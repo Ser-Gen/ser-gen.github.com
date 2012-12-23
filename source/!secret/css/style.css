@@ -1,0 +1,427 @@
+/*
+ * TABLE OF CONTENTS
+------------------------------------------------------------------------------*/
+/*
+
+	0. RESET AND COMMONS
+	
+	1. USEFUL
+		
+	2. LAYOUT
+		2.1. LAYOUT — START
+		2.2. LAYOUT — PROGRESS
+		2.3. LAYOUT — END
+
+ */
+
+
+
+/* 0. RESET AND COMMONS
+------------------------------------------------------------------------------*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ul {
+	list-style: none;
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	overflow-y: scroll;
+	width: 100%;
+}
+
+body {
+	background: #f0f2f4 url(../img/bg.png);
+	color: #000;
+	font: 13px Helvetica, Arial, sans-serif;
+	margin: auto;
+	min-width: 980px;
+	width: 100%;
+}
+
+
+input,
+select,
+textarea {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-size: inherit;
+	vertical-align: middle;
+}
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+	background-color: #fff;
+	border: 1px solid;
+	border-color: #808080 #c6c6c6 #c6c6c6 #808080;
+	-webkit-box-shadow: inset 1px 2px 2px rgba(0,0,0,.15);
+	   -moz-box-shadow: inset 1px 2px 2px rgba(0,0,0,.15);
+	        box-shadow: inset 1px 2px 2px rgba(0,0,0,.15);
+	padding: 4px;
+}
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+	border-color: #7cb4df;
+	-webkit-box-shadow:
+	          inset 1px 2px 3px rgba(0,0,0,.2),
+	          0 0 8px #bee1ff;
+	   -moz-box-shadow:
+	          inset 1px 2px 3px rgba(0,0,0,.2),
+	          0 0 8px #bee1ff;
+	        box-shadow:
+	          inset 1px 2px 3px rgba(0,0,0,.2),
+	          0 0 8px #bee1ff;
+}
+select {
+	padding: 3px;
+}
+input[type="checkbox"] {
+	vertical-align: text-bottom;
+}
+
+/* В webkit убираем отступ у элементов форм, наследуем шрифт */
+button,
+input,
+select,
+textarea {
+	font-family: inherit;
+	margin: 0;
+}
+
+/* нормализуем выравнивание и изменение размеров */
+textarea {
+	resize: vertical;
+	vertical-align: top;
+}
+
+/* В FF убираем лишний отступ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/* Теперь не ломает строку */
+sup {
+	bottom: 0.33em;
+	font-size: smaller;
+	position: relative;
+	vertical-align: baseline;
+}
+
+a,
+input,
+button,
+button span {
+	outline: none;
+}
+
+a img {
+	border: none;
+}
+
+::-moz-selection {
+	background-color: #81ae22;
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background-color: #81ae22;
+	color: #fff;
+	text-shadow: none;
+}
+
+
+
+/* 1. USEFUL
+------------------------------------------------------------------------------*/
+
+.hide {
+	display: none !important;
+}
+
+.hideText {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+.group:after {
+	clear:both;
+}
+
+
+
+/* 2. LAYOUT
+------------------------------------------------------------------------------*/
+
+body {
+	background: #97def5 url(../img/main-bg.jpg);
+	color:  #000;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.6428571428571428571428571428571;
+}
+body:after {
+	background: url(../img/holes-sprite-82x82.png), url(../img/snake-sprite-106x107.png), url(../img/game-results-bg.png), url(../img/back-button-sprite-200x68.png);
+	content: "";
+	visibility: hidden;
+}
+
+.pageMain {
+	background: url(../img/game-bg.png) no-repeat;
+	height: 704px;
+	left: 50%;
+	margin: -352px 0 0 -527px;
+	position: absolute;
+	top: 50%;
+	width: 1054px;
+}
+
+.pageMain canvas,
+.pageMain nav {
+	height: 630px;
+	left: 37px;
+	position: absolute;
+	top: 29px;
+	width: 980px;
+}
+.pageMain canvas span {
+	background-color: #fff;
+	border: 1px solid #999;
+	color: #d12d23;
+	font-weight: bold;
+	display: block;
+	padding: 10px;
+}
+
+.pageMain nav {
+	display: none;
+	overflow: hidden;
+}
+
+.pageMain .btn {
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	height: 97px;
+	text-indent: -9999px;
+	vertical-align: top;
+	width: 333px;
+}
+
+.pageMain section {
+	display: none;
+}
+
+
+
+/* 2.1. LAYOUT — START
+------------------------------------------------------------------------------*/
+
+.page-start nav {
+	background: url(../img/logo.png) 105px 175px no-repeat;
+	display: block;
+	padding: 185px 105px;
+}
+.page-start .screen-start {
+	display: inline-block;
+}
+.page-start .btn {
+	background: url(../img/start-button-sprite-333x97.png);
+	margin: 0 -24px;
+}
+.page-start .btn:hover {
+	background-position: 0 -97px;
+}
+.page-start .btn:active {
+	background-position: 0 -194px;
+}
+.page-start nav:before,
+.page-start nav:after {
+	background-repeat: no-repeat;
+	content: "";
+	display: block;
+	position: absolute;
+}
+.page-start nav:before {
+	background-image: url(../img/holes-sprite-82x82.png);
+	bottom: -41px;
+	height: 82px;
+	left: 625px;
+	width: 82px;
+}
+.page-start nav:after {
+	background-image: url(../img/snake-sprite-106x107.png);
+	bottom: -53px;
+	height: 107px;
+	left: 612px;
+	width: 106px;
+}
+
+
+.page-start .result {
+	float: right;
+}
+.page-start .description {
+	font-size: 16px;
+	margin: 120px 360px 35px 0;
+}
+
+.page-start .description.deny {
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.pageMain .result h2 {
+	color: #dc2b25;
+	font-size: 18px;
+	font-weight: normal;
+	margin-bottom: .5em;
+}
+
+.pageMain .result ul {
+	margin-left: -.5em;
+}
+
+.pageMain .result li {
+	height: 24px;
+	white-space: nowrap;
+}
+
+.pageMain .result span {
+	display: inline-block;
+}
+
+.pageMain .result span.score {
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.pageMain .result span.wrap {
+	width: 250px;
+	overflow: hidden;
+}
+
+.pageMain .result span.line {
+	border-bottom: 1px dotted #000;
+	width: 250px;
+}
+
+.pageMain .result span.num {
+	width: 20px;
+	text-align: right;
+	color: #777;
+}
+
+
+
+/* 2.2. LAYOUT — PROGRESS
+------------------------------------------------------------------------------*/
+
+
+
+/* 2.3. LAYOUT — END
+------------------------------------------------------------------------------*/
+
+.page-end nav {
+	background: url(../img/game-results-bg.png) 50% 149px no-repeat rgba(58,144,181,.25);
+	-webkit-border-radius: 25px;
+	   -moz-border-radius: 25px;
+	        border-radius: 25px;
+	display: block;
+	padding: 210px 380px;
+	text-align: center;
+}
+.page-end .screen-end {
+	display: inline-block;
+}
+
+.page-end .btn {
+	background: url(../img/back-button-sprite-200x68.png);
+	height: 68px;
+	width: 200px;
+}
+.page-end .btn:hover {
+	background-position: 0 -68px;
+}
+.page-end .btn:active {
+	background-position: 0 -136px;
+}
+
+.screen-end hgroup {
+	margin-bottom: 20px;
+	text-shadow: 0 3px 1px rgba(255,255,255,.5);
+}
+.screen-end .result,
+.screen-end h2 {
+	font-weight: bold;
+	line-height: 1;
+}
+.screen-end .result {
+	color: #5c8600;
+	font-size: 90px;
+}
+.screen-end h2 {
+	color: #777f82;
+	font-size: 24px;
+}
