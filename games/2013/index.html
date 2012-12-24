@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="windows-1251">
+<title>С наступающим 2013 годом!</title>
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.js"></script>
+<script src="js/game.js"></script>
+
+<body>
+	<div class="pageMain page-start">
+		<canvas id="drawCanvas">Ваш браузер не поддерживает HTML5 Canvas.</canvas>
+		<nav>
+			<section class="screen-start">
+				<p class="description">
+					Кликая по змеям, попадите в них как можно большее количество раз. Попадание по красным змеям увеличит время игры. Удачи!
+				</p>
+				<button class="btn" onclick="game.drawGameStart()">Начать игру</button>
+			</section>
+			<section class="screen-end">
+				<hgroup>
+					<h1 class="result">32</h1>
+					<h2>попадания</h2>
+				</hgroup>
+        <button class="btn" onclick="$('.pageMain').removeClass('page-end').addClass('page-start');game.resetGame();">В начало</button>
+			</section>
+		</nav>
+	</div>
+</body>
