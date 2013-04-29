@@ -1,0 +1,95 @@
+<!doctype html>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>CIFRA</title>
+
+<style>
+  .no-js {
+    background-color: red;
+    padding: 20px;
+  }
+  .no-js .attention { display: block; }
+  .attention { display: none; }
+</style>
+
+<!--[if (gt IE 9)|!(IE)]><!-->
+  <link rel="stylesheet" href="shell.css" />
+<!--<![endif]-->
+
+<body class="no-js">
+
+<script>
+  function removeClass(o, c){
+    var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
+    o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+  }
+
+  var body = document.body;
+  removeClass(body, 'no-js')
+</script>
+
+<h1 class="attention">У вас отключен Джаваскрипт.</h1>
+
+<!-- Some IE crutches -->
+<!--[if lte IE 9]>
+  <style type="text/css">
+    #clock {
+      font-family: sans-serif;
+      font-size: 45px;
+      text-align: center;
+    }
+  </style>
+  <div id="clock" title="Установите современный браузер, всё будет ОК"></div>
+  <script>
+    var clock = document.getElementById('clock');
+    (function changeIETime() {
+      var date = new Date(),
+          h = date.getHours();
+          m = date.getMinutes();
+      h < 10 ? h = '0'+h : h;
+      m < 10 ? m = '0'+m : m;
+      clock.innerHTML = h + ':' + m;
+      setTimeout(changeIETime, 1000);
+    }())
+  </script>
+<![endif]-->
+
+<!--[if (gt IE 9)|!(IE)]><!-->
+
+<clock>
+  <hours>
+    <major>
+      <leftD></leftD>
+      <rightD></rightD>
+      <left><num></num><cover></cover></left>
+      <right><num></num><cover></cover></right>
+    </major>
+    <minor>
+      <leftD></leftD>
+      <rightD></rightD>
+      <left><num></num><cover></cover></left>
+      <right><num></num><cover></cover></right>
+    </minor>
+  </hours>
+  <minutes>
+    <major>
+      <leftD></leftD>
+      <rightD></rightD>
+      <left><num></num><cover></cover></left>
+      <right><num></num><cover></cover></right>
+    </major>
+    <minor>
+      <leftD></leftD>
+      <rightD></rightD>
+      <left><num></num><cover></cover></left>
+      <right><num></num><cover></cover></right>
+    </minor>
+  </minutes>
+</clock>
+
+<script src="gears.js"></script>
+
+<!--<![endif]-->
+
+</body>

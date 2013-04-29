@@ -1,0 +1,769 @@
+/*!
+ * Styles of CIFRA
+ * Vasiliev SerGen, 2012
+ * You can see this without punishment
+ */
+
+
+
+ /* JS OFF
+========================================================== */
+
+.no-js clock { display: none; }
+
+
+
+/* JS ON
+========================================================== */
+
+/* COMMON
+========================================================== */
+
+@font-face {
+  font-family: 'Bebas';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  src: url('bebas.woff') format('woff'), 
+       url('bebas.ttf')  format('truetype'),
+       url('bebas.svg#Bebas') format('svg');
+/*  src: url('/fonts/bebas/bebas.woff') format('woff'), 
+       url('/fonts/bebas/bebas.ttf')  format('truetype'),
+       url('/fonts/bebas/bebas.svg#Bebas') format('svg');*/
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #000;
+  font-family: bebas, sans-serif;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+clock,
+hours,
+minutes,
+major,
+minor,
+leftD,
+rightD,
+left,
+right,
+cover {
+  display: block;
+}
+
+clock {
+  background: #a2aab3;
+  background: -webkit-radial-gradient(50% 95%, farthest-corner, #fff, #708198);
+     background: -moz-radial-gradient(50% 95%, farthest-corner, #fff, #708198);
+      background: -ms-radial-gradient(50% 95%, farthest-corner, #fff, #708198);
+       background: -o-radial-gradient(50% 95%, farthest-corner, #fff, #708198);
+          background: radial-gradient(50% 95%, farthest-corner, #fff, #708198);
+  border-radius: 25px;
+  box-shadow: 0 0 25px #cbd5e2;
+  font-size: 0;
+  font-weight: bold;
+  height: 440px;
+  left: 50%;
+  margin: -220px 0 0 -475px;
+  position: absolute;
+  top: 50%;
+  width: 950px;
+}
+.light clock {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+clock:before {
+  background: url(logo.png) no-repeat;
+  bottom: 20px;
+  content: '';
+  height: 32px;
+  position: absolute;
+  right: 80px;
+  width: 260px;
+}
+.light clock:before {
+  display: none;
+}
+clock:after {
+  background:
+    -webkit-radial-gradient(50% 100%, ellipse farthest-corner, #fff, rgba(0,0,0,0)),
+    -webkit-linear-gradient(rgba(0,0,0,0), rgba(124,139,160,.5) 60%, #a6c6f4 95%, #4774b8);
+     background:
+       -moz-radial-gradient(50% 100%, ellipse farthest-corner, #fff, rgba(0,0,0,0)),
+       -moz-linear-gradient(rgba(0,0,0,0), rgba(124,139,160,.5) 60%, #a6c6f4 95%, #4774b8);
+       background:
+         -o-radial-gradient(50% 100%, ellipse farthest-corner, #fff, rgba(0,0,0,0)),
+         -o-linear-gradient(rgba(0,0,0,0), rgba(124,139,160,.5) 60%, #a6c6f4 95%, #4774b8);
+          background:
+            radial-gradient(50% 100%, ellipse farthest-corner, #fff, rgba(0,0,0,0)),
+            linear-gradient(rgba(0,0,0,0), rgba(124,139,160,.5) 60%, #a6c6f4 95%, #4774b8);
+  border-radius: 25px;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: .4;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.light clock:after {
+  display: none;
+}
+
+hours,
+minutes {
+  border-radius: 20px;
+  float: left;
+  font-size: 280px;
+  height: 290px;
+  margin: 70px 0 0 90px;
+  position: relative;
+  width: 330px;
+}
+hours:after,
+minutes:after {
+  border-radius: 20px;
+  box-shadow: 0 -9px 5px rgba(0,0,0,.35) inset;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.light hours:after,
+.light minutes:after {
+  display: none;
+}
+major,
+minor {
+  background-image: -webkit-linear-gradient(-45deg, rgba(0,0,0,0) 10%, #000 30%, #000 60%, rgba(0,0,0,0) 90%);
+     background-image: -moz-linear-gradient(-45deg, rgba(0,0,0,0) 10%, #000 30%, #000 60%, rgba(0,0,0,0) 90%);
+       background-image: -o-linear-gradient(-45deg, rgba(0,0,0,0) 10%, #000 30%, #000 60%, rgba(0,0,0,0) 90%);
+          background-image: linear-gradient(-45deg, rgba(0,0,0,0) 10%, #000 30%, #000 60%, rgba(0,0,0,0) 90%);
+  border-radius: 20px;
+  float: left;
+  height: 290px;
+  overflow: hidden;
+  position: relative;
+  width: 155px;
+}
+major:after,
+minor:after {
+  box-shadow: -8px -13px 6px -7px rgba(0,0,0,.45) inset;
+  border-radius: 20px;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.light major:after,
+.light minor:after {
+  display: none;
+}
+minutes major:after,
+minutes minor:after {
+  box-shadow: 7px -11px 5px -6px rgba(0,0,0,.45) inset;
+}
+minor {
+  box-shadow: -5px -13px 6px -7px rgba(0,0,0,.45) inset;
+  float: right;
+}  
+
+minutes {
+  float: right;
+  font-size: 250px;
+  height: 261px;
+  margin: 100px 90px 0 0;
+  width: 293px;
+}
+  minutes major,
+  minutes minor {
+    background-image: -webkit-linear-gradient(45deg, rgba(0,0,0,0) 10%, #000 40%, #000 70%, rgba(0,0,0,0) 90%);
+       background-image: -moz-linear-gradient(45deg, rgba(0,0,0,0) 10%, #000 40%, #000 70%, rgba(0,0,0,0) 90%);
+         background-image: -o-linear-gradient(45deg, rgba(0,0,0,0) 10%, #000 40%, #000 70%, rgba(0,0,0,0) 90%);
+            background-image: linear-gradient(45deg, rgba(0,0,0,0) 10%, #000 40%, #000 70%, rgba(0,0,0,0) 90%);
+    box-shadow: 5px -13px 6px -7px rgba(0,0,0,.45) inset;
+    border-radius: 20px;
+    float: left;
+    height: 260px;
+    width: 137px;
+  }
+  .light minutes major,
+  .light minutes minor {
+    background: none;
+  }
+  minutes minor {
+    box-shadow: 8px -13px 6px -7px rgba(0,0,0,.45) inset;
+    float: right;
+  }
+  .light minutes minor {
+    box-shadow: none;
+  }
+
+left,
+right,
+leftD,
+rightD {
+  background: #f0f0f0;
+  height: 290px;
+  line-height: 0.92em;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 77px;
+  -webkit-transition:
+            background .5s linear,
+            -webkit-transform .5s linear,
+            left .5s linear,
+            right .5s linear;
+     -moz-transition:
+            background .5s linear,
+            -moz-transform .5s linear,
+            left .5s linear,
+            right .5s linear;
+       -o-transition:
+            background .5s linear,
+            -o-transform .5s linear,
+            left .5s linear,
+            right .5s linear;
+          transition:
+            background .5s linear,
+            transform .5s linear,
+            left .5s linear,
+            right .5s linear;
+}
+left,
+leftD {
+  border-radius: 20px 0 0 20px;
+}
+right,
+rightD {
+  border-radius: 0 20px 20px 0;
+}
+
+minutes left,
+minutes right,
+minutes leftD,
+minutes rightD {
+  height: 260px;
+  width: 68px;
+}
+
+left {
+  text-indent: 0;
+  visibility:hidden;
+}
+right {
+  text-indent: -76px;
+  visibility:hidden;
+  width: 77px;
+}
+
+cover {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  -webkit-transform: opacity(0);
+     -moz-transform: opacity(0);
+       -o-transform: opacity(0);
+          transform: opacity(0);
+}
+
+
+
+/* FIGURES DISPLAY AND ANIMATION
+========================================================== */
+
+/* MAJOR HOURS
+========================================================== */
+
+hours > major leftD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+          background: radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+  left: 0;
+  text-indent: 0;
+}
+hours > major leftD.active {
+  opacity: .5;
+  -webkit-transition: opacity .25s ease-out;
+     -moz-transition: opacity .25s ease-out;
+       -o-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
+}
+hours > major left {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+          background: radial-gradient(100% 100%, circle farthest-corner, #bac3ce, #8d9aad);
+  left: 38px;
+  -webkit-transform: scaleX(0);
+     -moz-transform: scaleX(0);
+       -o-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition:
+            background .25s ease-out,
+            -webkit-transform .25s ease-out,
+            left .25s ease-out;
+     -moz-transition:
+            background .25s ease-out,
+            -moz-transform .25s ease-out,
+            left .25s ease-out;
+       -o-transition:
+            background .25s ease-out,
+            -o-transform .25s ease-out,
+            left .25s ease-out;
+          transition:
+            background .25s ease-out,
+            transform .25s ease-out,
+            left .25s ease-out;
+}
+hours > major left.active {
+  left: 0 !important;
+  visibility: visible !important;
+  -webkit-transform: scalex(1) !important;
+     -moz-transform: scalex(1) !important;
+       -o-transform: scalex(1) !important;
+          transform: scalex(1) !important;
+}
+hours > major rightD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+          background: radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+  right: 0;
+  text-indent: -76px;
+}
+hours > major right {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+          background: radial-gradient(100% 100%, circle farthest-corner, #c8ced7, #95a2b3);
+  right: 0;
+  text-indent: -76px;
+  -webkit-transform: scaleX(1);
+     -moz-transform: scaleX(1);
+       -o-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transition:
+            background .25s ease-in,
+            -webkit-transform .25s ease-in,
+            right .25s ease-in;
+     -moz-transition:
+            background .25s ease-in,
+            -moz-transform .25s ease-in,
+            right .25s ease-in;
+       -o-transition:
+            background .25s ease-in,
+            -o-transform .25s ease-in,
+            right .25s ease-in;
+          transition:
+            background .25s ease-in,
+            transform .25s ease-in,
+            right .25s ease-in;
+}
+hours > major right.active {
+  right: 38px !important;
+  visibility:visible !important;
+  -webkit-transform: scaleX(0) !important;
+     -moz-transform: scaleX(0) !important;
+       -o-transform: scaleX(0) !important;
+          transform: scaleX(0) !important;
+}
+
+hours > major left cover {
+  background: rgba(0,0,0,.5);
+  -webkit-transition: background .25s ease-out;
+     -moz-transition: background .25s ease-out;
+       -o-transition: background .25s ease-out;
+          transition: background .25s ease-out;
+}
+hours > major left cover.active {
+  background: rgba(0,0,0,0);
+}
+
+hours > major right cover {
+  background: rgba(0,0,0,0);
+  -webkit-transition: background .25s ease-in;
+     -moz-transition: background .25s ease-in;
+       -o-transition: background .25s ease-in;
+          transition: background .25s ease-in;
+}
+hours > major right cover.active {
+  background: rgba(0,0,0,.5);
+}
+
+hours > major.indent leftD,
+hours > major.indent left {
+  text-indent: 41px;
+}
+hours > major.indent rightD,
+hours > major.indent right {
+  text-indent: -36px;
+}
+
+
+
+/* MINOR HOURS
+========================================================== */
+
+hours > minor leftD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+          background: radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+  left: 0;
+}
+hours > minor left {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+          background: radial-gradient(100% 100%, circle farthest-corner, #dde1e7, #a1acbb);
+  left: 0;
+  -webkit-transform: scaleX(1);
+     -moz-transform: scaleX(1);
+       -o-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transition:
+            background .25s ease-in,
+            -webkit-transform .25s ease-in,
+            left .25s ease-in;
+     -moz-transition:
+            background .25s ease-in,
+            -moz-transform .25s ease-in,
+            left .25s ease-in;
+       -o-transition:
+            background .25s ease-in,
+            -o-transform .25s ease-in,
+            left .25s ease-in;
+          transition:
+            background .25s ease-in,
+            transform .25s ease-in,
+            left .25s ease-in;
+}
+hours > minor left.active {
+  left: 38px !important;
+  visibility: visible !important;
+  -webkit-transform: scaleX(0) !important;
+     -moz-transform: scaleX(0) !important;
+       -o-transform: scaleX(0) !important;
+          transform: scaleX(0) !important;
+}
+hours > minor rightD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+          background: radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+  right: 0;
+  text-indent: -77px;
+}
+hours > minor rightD.active {
+  opacity: .5;
+  -webkit-transition: opacity .25s ease-out;
+     -moz-transition: opacity .25s ease-out;
+       -o-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
+}
+hours > minor right {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+          background: radial-gradient(100% 100%, circle farthest-corner, #e8eaee, #a8b2c0);
+  right: 38px;
+  text-indent: -77px;
+  -webkit-transform: scaleX(0);
+     -moz-transform: scaleX(0);
+       -o-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: background .25s ease-out, -webkit-transform .25s ease-out, right .25s ease-out;
+     -moz-transition: background .25s ease-out, -moz-transform .25s ease-out, right .25s ease-out;
+       -o-transition: background .25s ease-out, -o-transform .25s ease-out, right .25s ease-out;
+          transition: background .25s ease-out, transform .25s ease-out, right .25s ease-out;
+}
+hours > minor right.active {
+  right: 0 !important;
+  visibility: visible !important;
+  -webkit-transform: scalex(1) !important;
+     -moz-transform: scalex(1) !important;
+       -o-transform: scalex(1) !important;
+          transform: scalex(1) !important;
+}
+
+hours > minor left cover {
+  background: rgba(255,255,255,0);
+  -webkit-transition: background .25s ease-in;
+     -moz-transition: background .25s ease-in;
+       -o-transition: background .25s ease-in;
+          transition: background .25s ease-in;
+}
+hours > minor left cover.active {
+  background: rgba(255,255,255,.5);
+}
+
+hours > minor right cover {
+  background: rgba(0,0,0,.5);
+  -webkit-transition: background .25s ease-out;
+     -moz-transition: background .25s ease-out;
+       -o-transition: background .25s ease-out;
+          transition: background .25s ease-out;
+}
+hours > minor right cover.active {
+  background: rgba(0,0,0,0);
+}
+
+
+
+/* MAJOR MINUTES
+========================================================== */
+
+minutes > major leftD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+          background: radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+  left: 0;
+  text-indent: 4px;
+}
+minutes > major leftD.active {
+  opacity: .5;
+  -webkit-transition: opacity .25s ease-out;
+     -moz-transition: opacity .25s ease-out;
+       -o-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
+}
+minutes > major left {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+          background: radial-gradient(100% 100%, circle farthest-corner, #e2e5ea, #acb6c4);
+  left: 34px;
+  text-indent: 4px;
+  -webkit-transform: scaleX(0);
+     -moz-transform: scaleX(0);
+       -o-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition:
+            background .25s ease-out,
+            -webkit-transform .25s ease-out,
+            left .25s ease-out;
+     -moz-transition:
+            background .25s ease-out,
+            -moz-transform .25s ease-out,
+            left .25s ease-out;
+       -o-transition:
+            background .25s ease-out,
+            -o-transform .25s ease-out,
+            left .25s ease-out;
+          transition:
+            background .25s ease-out,
+            transform .25s ease-out,
+            left .25s ease-out;
+}
+minutes > major left.active {
+  left: 0 !important;
+  visibility:visible !important;
+  -webkit-transform: scalex(1) !important;
+     -moz-transform: scalex(1) !important;
+       -o-transform: scalex(1) !important;
+          transform: scalex(1) !important;
+}
+minutes > major rightD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+          background: radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+  right: 0;
+  text-indent: -64px;
+}
+minutes > major right {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+          background: radial-gradient(100% 100%, circle farthest-corner, #d5dae0, #a6b0bf);
+  right: 0;
+  text-indent: -64px;
+  -webkit-transform: scaleX(1);
+     -moz-transform: scaleX(1);
+       -o-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transition:
+            background .25s ease-in,
+            -webkit-transform .25s ease-in,
+            right .25s ease-in;
+     -moz-transition:
+            background .25s ease-in,
+            -moz-transform .25s ease-in,
+            right .25s ease-in;
+       -o-transition:
+            background .25s ease-in,
+            -o-transform .25s ease-in,
+            right .25s ease-in;
+          transition:
+            background .25s ease-in,
+            transform .25s ease-in,
+            right .25s ease-in;
+}
+minutes > major right.active {
+  right: 34px !important;
+  visibility:visible !important;
+  -webkit-transform: scaleX(0) !important;
+     -moz-transform: scaleX(0) !important;
+       -o-transform: scaleX(0) !important;
+          transform: scaleX(0) !important;
+}
+
+minutes > major left cover {
+  background: rgba(0,0,0,.5);
+  -webkit-transition: background .25s ease-out;
+     -moz-transition: background .25s ease-out;
+       -o-transition: background .25s ease-out;
+          transition: background .25s ease-out;
+}
+minutes > major left cover.active {
+  background: rgba(0,0,0,0);
+}
+
+minutes > major right cover {
+  background: rgba(0,0,0,0);
+  -webkit-transition: background .25s ease-in;
+     -moz-transition: background .25s ease-in;
+       -o-transition: background .25s ease-in;
+          transition: background .25s ease-in;
+}
+minutes > major right cover.active {
+  background: rgba(0,0,0,.5);
+}
+
+minutes > major.indent leftD,
+minutes > major.indent left {
+  text-indent: 36px;
+}
+minutes > major.indent rightD,
+minutes > major.indent right {
+  text-indent: -33px;
+}
+
+
+
+/* MINOR MINUTES
+========================================================== */
+
+minutes > minor leftD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+          background: radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+  left: 0;
+  text-indent: 4px;
+}
+minutes > minor left {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+          background: radial-gradient(100% 100%, circle farthest-corner, #c2c9d2, #9ba7b7);
+  left: 0;
+  text-indent: 4px;
+  -webkit-transform: scaleX(1);
+     -moz-transform: scaleX(1);
+       -o-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transition:
+            background .25s ease-in,
+            -webkit-transform .25s ease-in,
+            left .25s ease-in;
+     -moz-transition:
+            background .25s ease-in,
+            -moz-transform .25s ease-in,
+            left .25s ease-in;
+       -o-transition:
+            background .25s ease-in,
+            -o-transform .25s ease-in,
+            left .25s ease-in;
+          transition:
+            background .25s ease-in,
+            transform .25s ease-in,
+            left .25s ease-in;
+}
+minutes > minor left.active {
+  left: 34px !important;
+  visibility:visible !important;
+  -webkit-transform: scaleX(0) !important;
+     -moz-transform: scaleX(0) !important;
+       -o-transform: scaleX(0) !important;
+          transform: scaleX(0) !important;
+}
+minutes > minor rightD {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+          background: radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+  right: 0;
+  text-indent: -64px;
+}
+minutes > minor rightD.active {
+  opacity: .5;
+  -webkit-transition: opacity .25s ease-out;
+     -moz-transition: opacity .25s ease-out;
+       -o-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
+}
+minutes > minor right {
+  background: -webkit-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+     background: -moz-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+       background: -o-radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+          background: radial-gradient(100% 100%, circle farthest-corner, #b9c1cc, #929fb1);
+  right: 34px;
+  text-indent: -64px;
+  -webkit-transform: scaleX(0);
+     -moz-transform: scaleX(0);
+       -o-transform: scaleX(0);
+          transform: scaleX(0);
+  -moz-transition: background .25s ease-out, -moz-transform .25s ease-out, right .25s ease-out;
+  -webkit-transition: background .25s ease-out, -webkit-transform .25s ease-out, right .25s ease-out;
+  -o-transition: background .25s ease-out, -o-transform .25s ease-out, right .25s ease-out;
+  transition: background .25s ease-out, transform .25s ease-out, right .25s ease-out;
+}
+minutes > minor right.active {
+  right: 0 !important;
+  visibility: visible !important;
+  -moz-transform: scalex(1) !important;
+  -webkit-transform: scalex(1) !important;
+  -o-transform: scalex(1) !important;
+  transform: scalex(1) !important;
+}
+
+minutes > minor left cover {
+  background: rgba(0,0,0,0);
+  -moz-transition: background .25s ease-in;
+  -webkit-transition: background .25s ease-in;
+  -o-transition: background .25s ease-in;
+  transition: background .25s ease-in;
+}
+minutes > minor left cover.active {
+  background: rgba(0,0,0,.5);
+}
+
+minutes > minor right cover {
+  background: rgba(255,255,255,.5);
+  -moz-transition: background .25s ease-out;
+  -webkit-transition: background .25s ease-out;
+  -o-transition: background .25s ease-out;
+  transition: background .25s ease-out;
+}
+minutes > minor right cover.active {
+  background: rgba(255,255,255,0);
+}
