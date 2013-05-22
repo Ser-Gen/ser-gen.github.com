@@ -10,8 +10,13 @@ html {
 }
 
 h1 {
+	background-color: #e5e5e5;
+	display: inline-block;
 	font-family: 'PT Sans Narrow', 'Arial Narrow', sans-serif;
 	font-style: italic;
+
+	*display: inline;
+	*zoom: 1;
 }
 
 p {
