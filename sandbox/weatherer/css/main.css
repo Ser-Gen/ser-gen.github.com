@@ -1,0 +1,236 @@
+/*!
+ * Weatherer 1.0 CSS
+ * https://github.com/Ser-Gen/weatherer
+ * Эксперимент с геопозиционированием и фоновой подгрузкой данных
+ * MIT licensed
+ *
+ * Создан Сергеем Васильевым (@Ser_Gen)
+ */
+
+/*
+ *  TABLE OF CONTENTS
+-------------------------------------------------------------*/
+/*
+
+    USEFUL
+
+    LAYOUT
+      LAYOUT — OVERLAY
+      LAYOUT — WEATHER
+      LAYOUT — ADDRESS
+
+-------------------------------------------------------------*/
+
+
+
+/* USEFUL
+-------------------------------------------------------------*/
+
+.Preloader:after {
+  content: "";
+  display: inline;
+}
+
+
+
+/* LAYOUT
+-------------------------------------------------------------*/
+
+.WeatherNow {
+  transition: margin-top .3s ease-in-out;
+}
+.WeatherNow.showForecastHours {
+  margin-top: -26.6667em;
+}
+.WeatherNow.showForecastDaily {
+  margin-top: -53.3334em;
+}
+
+
+.WeatherForecast {
+  max-height: 26.6667em;
+  overflow: hidden;
+  text-align: center;
+}
+.WeatherForecast .Weather {
+  display: inline-block;
+  font-size: .7826em;
+  margin: 5em 4em;
+}
+.WeatherForecast .WeatherIcon {
+  margin-top: 1em;
+}
+.WeatherForecast .WeatherDate {
+  color: rgba(255,255,255,.5);
+  font-size: 2em;
+  margin-top: 1em;
+}
+
+
+
+/* LAYOUT — OVERLAY
+-------------------------------------------------------------*/
+
+.OverlayGradient {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  -webkit-transition: opacity .5s ease-in;
+          transition: opacity .5s ease-in;
+  width: 100%;
+}
+.dataLoading .OverlayGradient {
+  opacity: 0;
+}
+.dataLoaded .OverlayGradient {
+  opacity: 1;
+}
+.OverlayGradient.day {
+  background-color: #7da7d6;
+  background-image: linear-gradient(#4577d0, #acd0dc);
+}
+.OverlayGradient.border {
+  background-image: linear-gradient(#529ac8 10%, #79abcb 45%, #d3a863 85%, #da814b);
+}
+.OverlayGradient.night {
+  background-color: #081935;
+  background-image: linear-gradient(#051023, #0b1f42);
+}
+.OverlayGradient.twilight {
+  background-image: linear-gradient(#1d2537, #405979 50%, #a19ea4 80%, #f18739);
+}
+.OverlayGradient.nauticalTwilight {
+  background-image: linear-gradient(#10254a, #264885);
+}
+
+
+
+/* LAYOUT — WEATHER
+-------------------------------------------------------------*/
+
+.Weather {
+  cursor: default;
+  margin: 3em auto;
+}
+.WeatherTemp {
+  font-size: 5em;
+  text-align: center;
+}
+
+.WeatherIcon {
+  background-repeat: no-repeat;
+  background-size: 107.6667em 11.6667em;
+  height: 11.7em;
+  margin: 5em auto 1em;
+  width: 11.7em;
+}
+
+.Preloader.states:after {
+  background: url(../img/states_day.png), url(../img/states_night.png);
+}
+.OverlayGradient.day .WeatherIcon,
+.OverlayGradient.night .WeatherForecast.daily .WeatherIcon {
+  background-image: url(../img/states_day.png);
+}
+.OverlayGradient.night .WeatherIcon {
+  background-image: url(../img/states_night.png);
+}
+
+.WeatherIcon.s800 {
+  background-position: 0 0; /* Ясно */
+}
+.WeatherIcon.s801,
+.WeatherIcon.s802,
+.WeatherIcon.s803 {
+  background-position: -12em 0; /* Переменная облачность */
+}
+.WeatherIcon.s804 {
+  background-position: -24em 0; /* Облачность */
+}
+.WeatherIcon.s500,
+.WeatherIcon.s501 {
+  background-position: -36em 0; /* Небольшой дождь */
+}
+.WeatherIcon.s502,
+.WeatherIcon.s503,
+.WeatherIcon.s504 {
+  background-position: -48em 0; /* Дождь */
+}
+.WeatherIcon.s520,
+.WeatherIcon.s521,
+.WeatherIcon.s522 {
+  background-position: -48em 0; /* Ливень */
+}
+.WeatherIcon.s210, /* Гроза небольшая */
+.WeatherIcon.s211, /* Гроза */
+.WeatherIcon.s212, /* Гроза мощная */
+.WeatherIcon.s221 { /* Гроза разрозненная */
+  background-position: -60em 0;
+}
+.WeatherIcon.s200, /* Гроза с небольшим дождём */
+.WeatherIcon.s201, /* Гроза с дождём */
+.WeatherIcon.s202, /* Гроза с ливнем */
+.WeatherIcon.s230, /* Гроза с небольшими осадками */
+.WeatherIcon.s231, /* Гроза с осадками */
+.WeatherIcon.s232 { /* Гроза с серьёзными осадками */
+  background-position: -72em 0;
+}
+.WeatherIcon.s701, /* Туман */
+.WeatherIcon.s711, /* Дымка */
+.WeatherIcon.s721, /* Дымка густая */
+.WeatherIcon.s731, /* Песчаные и пыльные вихри */
+.WeatherIcon.s741 { /* Густой туман */
+  background-position: -84em 0;
+}
+.WeatherIcon.s600, /* Небольшой снег */
+.WeatherIcon.s601, /* Снег */
+.WeatherIcon.s602, /* Сильный снег */
+.WeatherIcon.s611, /* Мокрый снег */
+.WeatherIcon.s621 { /* Снег ливневый (?) */
+  background-position: -96em 0;
+}
+
+
+
+/* LAYOUT — ADDRESS
+-------------------------------------------------------------*/
+
+.addressInputWrapper {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+.addressInput {
+  background-color: transparent;
+  border: none;
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  font-size: .9em;
+  margin: 2em auto;
+  text-align: center;
+}
+.addressInput:hover {
+  color: rgba(255,255,255,.8);
+}
+.addressInput:focus {
+  color: rgba(255,255,255,1);
+  cursor: text;
+  outline: none;
+}
+.addressInput[disabled] {
+  -webkit-animation: addressIsLoading linear .75s infinite;
+          animation: addressIsLoading linear .75s infinite;
+}
+@-webkit-keyframes addressIsLoading {
+  from { color: rgba(255,255,255,.9); }
+   50% { color: rgba(255,255,255,.2); }
+    to { color: rgba(255,255,255,.9); }
+}
+@keyframes addressIsLoading {
+  from { color: rgba(255,255,255,.9); }
+   50% { color: rgba(255,255,255,.2); }
+    to { color: rgba(255,255,255,.9); }
+}
