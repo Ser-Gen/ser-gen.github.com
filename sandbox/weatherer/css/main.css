@@ -37,7 +37,8 @@
 -------------------------------------------------------------*/
 
 .WeatherNow {
-  transition: margin-top .3s ease-in-out;
+  -webkit-transition: margin-top .3s ease-in-out;
+          transition: margin-top .3s ease-in-out;
 }
 .WeatherNow.showForecastHours {
   margin-top: -26.6667em;
@@ -88,20 +89,25 @@
 }
 .OverlayGradient.day {
   background-color: #7da7d6;
-  background-image: linear-gradient(#4577d0, #acd0dc);
+  background-image: -webkit-linear-gradient(#4577d0, #acd0dc);
+          background-image: linear-gradient(#4577d0, #acd0dc);
 }
 .OverlayGradient.border {
-  background-image: linear-gradient(#529ac8 10%, #79abcb 45%, #d3a863 85%, #da814b);
+  background-image: -webkit-linear-gradient(#529ac8 10%, #79abcb 45%, #d3a863 85%, #da814b);
+          background-image: linear-gradient(#529ac8 10%, #79abcb 45%, #d3a863 85%, #da814b);
 }
 .OverlayGradient.night {
   background-color: #081935;
-  background-image: linear-gradient(#051023, #0b1f42);
+  background-image: -webkit-linear-gradient(#051023, #0b1f42);
+          background-image: linear-gradient(#051023, #0b1f42);
 }
 .OverlayGradient.twilight {
-  background-image: linear-gradient(#1d2537, #405979 50%, #a19ea4 80%, #f18739);
+  background-image: -webkit-linear-gradient(#1d2537, #405979 50%, #a19ea4 80%, #f18739);
+          background-image: linear-gradient(#1d2537, #405979 50%, #a19ea4 80%, #f18739);
 }
 .OverlayGradient.nauticalTwilight {
-  background-image: linear-gradient(#10254a, #264885);
+  background-image: -webkit-linear-gradient(#10254a, #264885);
+          background-image: linear-gradient(#10254a, #264885);
 }
 
 

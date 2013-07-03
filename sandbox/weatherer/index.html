@@ -5,17 +5,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Погодник</title>
-  <meta name="description" content="Погодник — погодный подсказчик" />
+  <meta name="author" content="Васильев Сергей, веб-технолог">
+  <meta name="description" content="Погодник — погодный подсказчик">
+  <meta name="keywords" content="эксперимент, погодник, погодный помощник, geolocation, suncalc, google maps, geocoder">
 
-  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 
   <!-- https://developers.google.com/fonts/docs/getting_started#Subsets -->
   <link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Roboto:100&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-</head>
 
-<body class="dataLoading">
-  
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" id="favicon">
+
   <style>
     .Attention {
       color: #000;
@@ -27,6 +28,9 @@
       text-align: center;
     }
   </style>
+</head>
+
+<body class="dataLoading">
 
 <noscript>
   <div class="Attention">
@@ -56,6 +60,7 @@
 
     var head = d.getElementsByTagName('head')[0],
         body = d.body,
+        title = d.getElementsByTagName('title')[0],
 
         checkVW = d.createElement('div');
     checkVW.style.width = '100vw';
