@@ -187,6 +187,12 @@
     pos.alternate = false;
     localSaveState(pos);
     locator();
+
+    addClass(body, 'cityIsChanging');
+    overlayHelper.className = 'OverlayGradient helper';
+    addClass(overlayHelper, getTimes(pos));
+    weatherNow.addEventListener('transitionend', callback, false);
+
     removeClass(addressDetect, 'isAlertnated');
     addressDetect.addEventListener('transitionend', addressTransitionHandler, false);
   }
@@ -347,8 +353,8 @@
   // http://htmlbook.ru/html5/geolocation
   // https://code.google.com/p/geo-location-javascript/
   // http://jsfiddle.net/RXQus/
+  var chance;
   function locator(p) {
-    var chance;
     // countDataToLoad = 0;
     if (p === undefined) {
       if (pos.alternate === true) {
@@ -382,22 +388,22 @@
     function success_callback(p) {
       callback(p);
     }
-    function callback(p) {
-      if (pos.alternate === true) {
-        addressDetect.style.display = 'block';
-        addClass(addressDetect, 'isAlertnated');
-      }
-      if (chance) {
-        clearTimeout(chance);
-      }
-      if (((p && p.timestamp) || pos.alternate === false) && p.PERMISSION_DENIED !== 1) {
-        pos = p;
-      }
-      weatherNow.removeEventListener('transitionend', callback, false);
-      setTimes(pos);
-      getWeather(pos);
-      geoGetter(pos);
+  }
+  function callback(p) {
+    if (pos.alternate === true) {
+      addressDetect.style.display = 'block';
+      addClass(addressDetect, 'isAlertnated');
     }
+    if (chance) {
+      clearTimeout(chance);
+    }
+    if (((p && p.timestamp) || pos.alternate === false) && p.PERMISSION_DENIED !== 1) {
+      pos = p;
+    }
+    weatherNow.removeEventListener('transitionend', callback, false);
+    setTimes(pos);
+    getWeather(pos);
+    geoGetter(pos);
   }
 
 
