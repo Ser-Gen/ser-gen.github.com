@@ -12,8 +12,6 @@
 -------------------------------------------------------------*/
 /*
 
-    USEFUL
-
     LAYOUT
       LAYOUT — OVERLAY
       LAYOUT — WEATHER
@@ -23,22 +21,14 @@
 
 
 
-/* USEFUL
--------------------------------------------------------------*/
-
-.Preloader:after {
-  content: "";
-  display: inline;
-}
-
-
-
 /* LAYOUT
 -------------------------------------------------------------*/
 
 .WeatherNow {
-  -webkit-transition: margin-top .3s ease-in-out;
-          transition: margin-top .3s ease-in-out;
+  -webkit-transition: margin-top .3s ease-in-out,
+                      opacity .4s ease-in;
+          transition: margin-top .3s ease-in-out,
+                      opacity .4s ease-in;
 }
 .WeatherNow.showForecastHours {
   margin-top: -26.6667em;
@@ -76,15 +66,20 @@
   bottom: 0;
   height: 100%;
   left: 0;
+  margin: 0;
+  opacity: 0;
   position: absolute;
   -webkit-transition: opacity .5s ease-in;
           transition: opacity .5s ease-in;
   width: 100%;
 }
-.dataLoading .OverlayGradient {
+.dataLoaded .OverlayGradient {
+  opacity: 1;
+}
+.cityIsChanging .OverlayGradient {
   opacity: 0;
 }
-.dataLoaded .OverlayGradient {
+.OverlayGradient.helper {
   opacity: 1;
 }
 .OverlayGradient.day {
@@ -118,6 +113,10 @@
 .Weather {
   cursor: default;
   margin: 3em auto;
+  opacity: 1;
+}
+.cityIsChanging .Weather {
+  opacity: 0;
 }
 .WeatherTemp {
   font-size: 5em;
@@ -132,13 +131,13 @@
   width: 11.7em;
 }
 
-.Preloader.states:after {
-  background: url(../img/states_day.png), url(../img/states_night.png);
-}
-.OverlayGradient.day .WeatherIcon,
+.OverlayGradient.day > .WeatherNow .WeatherIcon,
+.OverlayGradient.day > .WeatherForecast .WeatherIcon,
 .OverlayGradient.night .WeatherForecast.daily .WeatherIcon {
   background-image: url(../img/states_day.png);
 }
+.OverlayGradient.night > .WeatherNow .WeatherIcon,
+.OverlayGradient.night > .WeatherForecast .WeatherIcon,
 .OverlayGradient.night .WeatherIcon {
   background-image: url(../img/states_night.png);
 }
@@ -202,35 +201,50 @@
 /* LAYOUT — ADDRESS
 -------------------------------------------------------------*/
 
-.addressInputWrapper {
+.Address {
   bottom: 0;
+  left: 0;
+  padding: 2em;
   right: 0;
   position: absolute;
 }
-.addressInput {
+
+.AddressDetector,
+.AddressInput {
   background-color: transparent;
   border: none;
   color: rgba(255,255,255,.6);
   cursor: pointer;
-  display: block;
   font-family: inherit;
   font-size: .9em;
-  margin: 2em auto;
-  text-align: center;
 }
-.addressInput:hover {
+.AddressDetector:hover,
+.AddressInput:hover {
   color: rgba(255,255,255,.8);
 }
-.addressInput:focus {
+
+.AddressInput {
+  display: block;
+  float: right;
+  text-align: right;
+  width: 15em;
+}
+.AddressInput:focus {
   color: rgba(255,255,255,1);
   cursor: text;
   outline: none;
 }
-.addressInput[disabled] {
+.AddressInput[disabled] {
   -webkit-animation: addressIsLoading linear .75s infinite;
+       -o-animation: addressIsLoading linear .75s infinite;
           animation: addressIsLoading linear .75s infinite;
 }
 @-webkit-keyframes addressIsLoading {
+  from { color: rgba(255,255,255,.9); }
+   50% { color: rgba(255,255,255,.2); }
+    to { color: rgba(255,255,255,.9); }
+}
+@-o-keyframes addressIsLoading {
   from { color: rgba(255,255,255,.9); }
    50% { color: rgba(255,255,255,.2); }
     to { color: rgba(255,255,255,.9); }
@@ -239,4 +253,72 @@
   from { color: rgba(255,255,255,.9); }
    50% { color: rgba(255,255,255,.2); }
     to { color: rgba(255,255,255,.9); }
+}
+
+.AddressDetector {
+  float: left;
+  opacity: 0;
+  position: relative;
+  -webkit-transition: opacity .3s ease-in-out;
+          transition: opacity .3s ease-in-out;
+}
+.AddressDetector.isAlertnated {
+  display: block;
+  opacity: 1;
+  overflow: visible;
+}
+.AddressDetectorText {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transition:
+            opacity .3s ease-in-out .1s,
+            left .3s ease-in-out .1s;
+          transition:
+            opacity .3s ease-in-out .1s,
+            left .3s ease-in-out .1s;
+  width: 4.5em;
+}
+.AddressDetector:hover .AddressDetectorText {
+  left: 100%;
+  opacity: 1;
+}
+.AddressDetectorIcon {
+  border: 2px solid rgba(255,255,255,.6);
+  border-radius: 50%;
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+  -webkit-transform: rotate(25deg);
+          transform: rotate(25deg);
+  -webkit-transition: -webkit-transform .4s ease-in-out;
+          transition: transform .4s ease-in-out;
+}
+.AddressDetector:hover .AddressDetectorIcon {
+  -webkit-transform: rotate(-145deg);
+          transform: rotate(-145deg);
+}
+.AddressDetectorIcon:before,
+.AddressDetectorIcon:after {
+  border-left: 2px solid rgba(255,255,255,.6);
+  content: '';
+  display: block;
+  height: 160%;
+  left: 50%;
+  position: absolute;
+  top: -30%;
+  /* элементы нормально отрисовываются только в момент анимации, поэтому лучше их постоянно держать в отдельном слое */
+  -webkit-transform: translateX(-50%) translateZ(0);
+          transform: translateX(-50%) translateZ(0);
+}
+.AddressDetectorIcon:after {
+  -webkit-transform: translateX(-50%) rotate(90deg) translateZ(0);
+          transform: translateX(-50%) rotate(90deg) translateZ(0);
+}
+.AddressDetector:hover .AddressDetectorIcon,
+.AddressDetector:hover .AddressDetectorIcon:before,
+.AddressDetector:hover .AddressDetectorIcon:after {
+  border-color: rgba(255,255,255,.9);
 }

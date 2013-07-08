@@ -11,6 +11,14 @@
 Проверялась правильность работы в обозревателях марок ИЕ 10, Файрфокс 22, Хром 27, Опера 12, ЯндексБраузер 1.7 (именно для него добавлены практически все свойства с префиксом `-webkit-`; кроме `animation` — для Хрома).
 
 
+## Используемое
+
+* [geo.js для определения местонахождения пользователя](http://code.google.com/p/geo-location-javascript/)
+* [Карты Яндекса для определения информации о местности](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
+* [SunCalc для вычисления времени суток](http://www.suncalc.net/)
+* [OpenWeatherMap для получения данных о погоде](http://openweathermap.org/)
+
+
 ## Лицензия
 
 MIT licensed
