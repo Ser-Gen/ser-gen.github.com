@@ -23,12 +23,24 @@
   var timeZone = new Date().getTimezoneOffset()/60,
 
       times,
-      updateDelay = 10*60*1000,
+      updateDelay = 15*60*1000,
 
       overlayState = 0,
-      addressIsEdited = false,
+      addressIsEdited = false;
 
-      overlay = d.getElementById('OverlayGradientMain'),
+
+  var pos = {}, pos_old = {},
+      pos_home = {
+        coords : {
+          latitude : 51.656887,
+          longitude : 39.202534
+        }
+      },
+      chance, firstStart = true,
+      isLocaleAvailable = false;
+
+
+  var overlay = d.getElementById('OverlayGradientMain'),
       overlayHelper = d.getElementById('OverlayGradientHelper'),
 
       weatherNow = d.getElementById('WeatherNow'),
@@ -42,17 +54,37 @@
       addressDetect = d.getElementById('addressDetectAgain');
 
 
-  if (localLoadState()) {
-    var pos = localLoadState();
-  } else {
-        // центр Воронежа
-    var pos = {
-          coords : {
-            latitude : 51.656887,
-            longitude : 39.202534
-          }
-        };
-  }
+  // http://stackoverflow.com/questions/492994/compare-dates-with-javascript
+  // Source: http://stackoverflow.com/questions/497790
+  var dates = {
+    convert:function(d) {
+      return (
+        d.constructor === Date ? d :
+        d.constructor === Array ? new Date(d[0],d[1],d[2]) :
+        d.constructor === Number ? new Date(d) :
+        d.constructor === String ? new Date(d) :
+        typeof d === "object" ? new Date(d.year,d.month,d.date) :
+        NaN
+      );
+    },
+    compare:function(a,b) {
+      return (
+        isFinite(a=this.convert(a).valueOf()) &&
+        isFinite(b=this.convert(b).valueOf()) ?
+        (a>b)-(a<b) :
+        NaN
+      );
+    },
+    inRange:function(d,start,end) {
+     return (
+        isFinite(d=this.convert(d).valueOf()) &&
+        isFinite(start=this.convert(start).valueOf()) &&
+        isFinite(end=this.convert(end).valueOf()) ?
+        start <= d && d <= end :
+        NaN
+      );
+    }
+  };
 
 
   // https://github.com/Ser-Gen/troller/
@@ -68,60 +100,15 @@
   }
 
 
-  // http://stackoverflow.com/questions/492994/compare-dates-with-javascript
-  // Source: http://stackoverflow.com/questions/497790
-  var dates = {
-    convert:function(d) {
-      // Converts the date in d to a date-object. The input can be:
-      //   a date object: returned without modification
-      //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
-      //   a number     : Interpreted as number of milliseconds
-      //                  since 1 Jan 1970 (a timestamp) 
-      //   a string     : Any format supported by the javascript engine, like
-      //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-      //  an object     : Interpreted as an object with year, month and date
-      //                  attributes.  **NOTE** month is 0-11.
-      return (
-        d.constructor === Date ? d :
-        d.constructor === Array ? new Date(d[0],d[1],d[2]) :
-        d.constructor === Number ? new Date(d) :
-        d.constructor === String ? new Date(d) :
-        typeof d === "object" ? new Date(d.year,d.month,d.date) :
-        NaN
-      );
-    },
-    compare:function(a,b) {
-      // Compare two dates (could be of any type supported by the convert
-      // function above) and returns:
-      //  -1 : if a < b
-      //   0 : if a = b
-      //   1 : if a > b
-      // NaN : if a or b is an illegal date
-      // NOTE: The code inside isFinite does an assignment (=).
-      return (
-        isFinite(a=this.convert(a).valueOf()) &&
-        isFinite(b=this.convert(b).valueOf()) ?
-        (a>b)-(a<b) :
-        NaN
-      );
-    },
-    inRange:function(d,start,end) {
-      // Checks if date in d is between dates in start and end.
-      // Returns a boolean or NaN:
-      //    true  : if d is between start and end (inclusive)
-      //    false : if d is before start or after end
-      //    NaN   : if one or more of the dates is illegal.
-      // NOTE: The code inside isFinite does an assignment (=).
-     return (
-        isFinite(d=this.convert(d).valueOf()) &&
-        isFinite(start=this.convert(start).valueOf()) &&
-        isFinite(end=this.convert(end).valueOf()) ?
-        start <= d && d <= end :
-        NaN
-      );
-    }
-  };
+  // получаем город, если есть
+  var hashCity = urlVar('city');
+  if (hashCity) {
+    geoGetter(hashCity);
+  } 
 
+  pos_old = tryGetLocalPos();
+  appLoop();
+  var looper = setInterval(appLoop, updateDelay);
 
   overlay.addEventListener(actionEventUp, overlayStateLoop, false);
 
@@ -132,10 +119,95 @@
 
   d.addEventListener('keydown', documentKeyHandler, false);
 
-  locator();
-  var locatorLoop = setInterval(locator, updateDelay);
+
+  if (geo_position_js.init()) {
+    isLocaleAvailable = true;
+  };
 
 
+  // выбирает, искать ли пользователя или обходиться полученными данными
+  function appLoop() {
+    if (pos.alternate !== true) {
+      locateTrigger();
+    } else {
+      placeProcessor();
+    }
+  }
+
+  // запуск поиска пользователя
+  function locateTrigger() {
+    if (isLocaleAvailable) {
+      chance = setTimeout(problem_callback, 20*1000);
+      geo_position_js.getCurrentPosition(success_callback,problem_callback);
+    } else {
+      problem_callback();
+    }
+  }
+  // если пользователь нашёлся
+  function success_callback(p) {
+    pos = p;
+    placeProcessor(pos);
+  }
+  // если пользователь не нашёлся, пробуем найти положение в локальном хранилище или используем положение по умолчанию
+  function problem_callback() {
+    tryGetLocalPos();
+    pos.alternate = true;
+    placeProcessor(pos);
+  }
+
+  // проверяет, изменилось ли положение
+  // если да — плавно меняет содержимое,
+  // нет — просто меняет данные
+  function placeProcessor() {
+    if (chance) {
+      clearTimeout(chance);
+    }
+
+    if (pos.alternate === true) {
+      addressDetect.style.display = 'block';
+      addClass(addressDetect, 'isAlertnated');
+    }
+
+    if (!pos_old.hasOwnProperty('coords') || (pos.coords.latitude !== pos_old.coords.latitude && pos.coords.longitude !== pos_old.coords.longitude)) {
+      pos_old = pos;
+      localSaveState(pos);
+      firstStart = true;
+      smoothChanger();
+    } else {
+      setData(pos);
+    }
+  }
+
+  // плавно подменяет данные
+  function smoothChanger() {
+    if (firstStart) {
+      addClass(body, 'cityIsChanging');
+      overlayHelper.className = 'helper';
+      addClass(overlayHelper, getTimes(pos));
+
+      // https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions#Detecting_the_completion_of_a_transition
+      weatherNow.addEventListener('transitionend', function(){
+        setData(pos);
+      }, false);
+    } else {
+      setData(pos);
+      firstStart = false;
+    }
+  }
+
+  // устанавливает данные
+  function setData(pos) {
+    weatherNow.removeEventListener('transitionend', function(){
+      setData(pos);
+    }, false);
+
+    setTimes(pos);
+    setWeather(pos);
+    geoGetter(pos);
+  }
+
+
+  // использование локального хранилища
   function localSaveState(data) {
     if (isLocalStorageAvailable) {
       localStorage.setItem('WeathererDB', JSON.stringify(data));
@@ -149,6 +221,18 @@
     } else {
       return false;
     }
+  }
+
+  function tryGetLocalPos() {
+    if (localLoadState()) {
+      pos = localLoadState();
+      if (!pos.hasOwnProperty('coords')) {
+        pos = pos_home;
+      }
+    } else {
+      pos = pos_home;
+    }
+    return pos;
   }
 
 
@@ -165,17 +249,25 @@
   };
 
 
-  function changeFavicon(src) {
-    var link = document.createElement('link'),
-       oldLink = document.getElementById('favicon');
-    link.id = 'favicon';
-    link.rel = 'shortcut icon';
-    link.type = 'image/x-icon';
-    link.href = src;
-    if (oldLink) {
-      document.head.removeChild(oldLink);
+  // работа с переменными в строке адреса
+  function urlVar(target, value) {
+    var localHash = d.location.hash;
+    if (localHash !== '') {
+      var pairs = localHash.replace('#','').split('&');
+      for (var i = 0, len = pairs.length; i < len; i++) {
+        var val = pairs[i].split('=');
+        if (val[0] == target) {
+          if (value !== undefined) {
+            d.location.hash = localHash.replace(val[1], value);
+            return true;
+          } else {
+            return val[1];
+          }
+        }
+      };
+    } else {
+      return false;
     }
-    document.head.appendChild(link);
   }
 
 
@@ -184,14 +276,9 @@
       addressDetect.style.display = 'none';
       addressDetect.removeEventListener('transitionend', addressTransitionHandler, false);
     };
-    pos.alternate = false;
-    localSaveState(pos);
-    locator();
 
-    addClass(body, 'cityIsChanging');
-    overlayHelper.className = 'OverlayGradient helper';
-    addClass(overlayHelper, getTimes(pos));
-    weatherNow.addEventListener('transitionend', callback, false);
+    pos.alternate = false;
+    appLoop();
 
     removeClass(addressDetect, 'isAlertnated');
     addressDetect.addEventListener('transitionend', addressTransitionHandler, false);
@@ -210,7 +297,7 @@
       geoGetter(address.value);
       address.setAttribute('disabled', 'disabled');
       addressDisabledDisabler = setTimeout(function () {
-        countDataToLoad = 2;
+        countDataToLoad = 3;
         dataIsLoaded();
       }, 15000);
     }
@@ -219,6 +306,7 @@
     overlay.addEventListener(actionEventUp, overlayStateLoop, false);
     address.removeEventListener('keydown', addressKeyHandler, false);
   }
+
   function addressKeyHandler(e) {
     e = e || window.event;
     if (e.keyCode === 13) { /* ентер */
@@ -244,7 +332,6 @@
     }
   }
 
-
   function overlayStateLoop() {
     switch (overlayState) {
       case 0:
@@ -263,14 +350,56 @@
   }
 
 
+  // работа с данными
+
+  // http://www.suncalc.net/
+  // https://github.com/mourner/suncalc
+  function getTimes(pos) {
+    var curDate = new Date();
+
+    times = SunCalc.getTimes(curDate, pos.coords.latitude, pos.coords.longitude); // (дата, широта, долгота)
+    if (dates.inRange(curDate, times.goldenHourEnd, times.goldenHour)) {
+      changeFavicon('img/ico/favicon_day.ico');
+      return 'OverlayGradient day';
+    } else if ((dates.inRange(curDate, times.sunrise, times.goldenHourEnd)) || (dates.inRange(curDate, times.goldenHour, times.sunset))) {
+      changeFavicon('img/ico/favicon_day.ico');
+      return 'OverlayGradient day border';
+    } else if ((dates.inRange(curDate, times.dawn, times.sunrise)) || (dates.inRange(curDate, times.sunset, times.dusk))) {
+      changeFavicon('img/ico/favicon_night.ico');
+      return 'OverlayGradient night twilight';
+    } else if ((dates.inRange(curDate, times.nauticalDawn, times.dawn)) || (dates.inRange(curDate, times.dusk, times.nauticalDusk))) {
+      changeFavicon('img/ico/favicon_night.ico');
+      return 'OverlayGradient night nauticalTwilight';
+    } else {
+      changeFavicon('img/ico/favicon_night.ico');
+      return 'OverlayGradient night';
+    }
+  }
+
+  function setTimes(pos) {
+    overlay.className = getTimes(pos);
+  }
+
+  function changeFavicon(src) {
+    var link = document.createElement('link'),
+       oldLink = document.getElementById('favicon');
+    link.id = 'favicon';
+    link.rel = 'shortcut icon';
+    link.type = 'image/x-icon';
+    link.href = src;
+    if (oldLink) {
+      document.head.removeChild(oldLink);
+    }
+    document.head.appendChild(link);
+  }
+
+
   // http://stackoverflow.com/questions/9922101/get-json-data-from-external-url-and-display-a-particular-value-by-injecting-it-i
   function getData(link) {
     var script = d.createElement('script');
     script.src = link;
     body.appendChild(script);
   }
-
-
 
 
   // http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml
@@ -288,9 +417,16 @@
 
   window.getPos = function getPos(data) {
     if (data.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData.found > 0) {
-      var place = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
-      locator(place);
-      return place;
+      var p = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+      pos = {
+        coords : {
+           latitude : p[1],
+          longitude : p[0]
+        },
+        alternate : true
+      };
+      placeProcessor(pos);
+      return pos;
     } else {
       address.removeAttribute('disabled');
       address.value = 'Место не нашлось :(';
@@ -342,98 +478,13 @@
       }
       address.value = addressName;
       address.title = addressFull;
+      title.innerHTML = addressName +' &mdash; Погодник';
     } else {
       address.value = 'Точное место не нашлось :(';
       address.removeAttribute('disabled');
       clearTimeout(addressDisabledDisabler);
     }
   };
-
-
-  // http://htmlbook.ru/html5/geolocation
-  // https://code.google.com/p/geo-location-javascript/
-  // http://jsfiddle.net/RXQus/
-  var chance;
-  function locator(p) {
-    // countDataToLoad = 0;
-    if (p === undefined) {
-      if (pos.alternate === true) {
-        callback();
-      } else {
-        if (geo_position_js.init()) {
-          if (!pos.timestamp) {
-            chance = setTimeout(callback, 15*1000);
-          }
-          geo_position_js.getCurrentPosition(success_callback,callback);
-        } else {
-          callback();
-        }
-      }
-    } else {
-      pos = {
-        coords : {
-           latitude : p[1],
-          longitude : p[0]
-        },
-        alternate : true
-      };
-      localSaveState(pos);
-      addClass(body, 'cityIsChanging');
-      overlayHelper.className = 'OverlayGradient helper';
-      addClass(overlayHelper, getTimes(pos));
-      // https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions#Detecting_the_completion_of_a_transition
-      weatherNow.addEventListener('transitionend', callback, false);
-    }
-
-    function success_callback(p) {
-      callback(p);
-    }
-  }
-  function callback(p) {
-    if (pos.alternate === true) {
-      addressDetect.style.display = 'block';
-      addClass(addressDetect, 'isAlertnated');
-    }
-    if (chance) {
-      clearTimeout(chance);
-    }
-    if (((p && p.timestamp) || pos.alternate === false) && p.PERMISSION_DENIED !== 1) {
-      pos = p;
-    }
-    weatherNow.removeEventListener('transitionend', callback, false);
-    setTimes(pos);
-    getWeather(pos);
-    geoGetter(pos);
-  }
-
-
-  // http://www.suncalc.net/
-  // https://github.com/mourner/suncalc
-  function getTimes(pos) {
-    var curDate = new Date();
-
-    times = SunCalc.getTimes(curDate, pos.coords.latitude, pos.coords.longitude); // (дата, широта, долгота)
-    if (dates.inRange(curDate, times.goldenHourEnd, times.goldenHour)) {
-      changeFavicon('img/ico/favicon_day.ico');
-      return 'OverlayGradient day';
-    } else if ((dates.inRange(curDate, times.sunrise, times.goldenHourEnd)) || (dates.inRange(curDate, times.goldenHour, times.sunset))) {
-      changeFavicon('img/ico/favicon_day.ico');
-      return 'OverlayGradient day border';
-    } else if ((dates.inRange(curDate, times.dawn, times.sunrise)) || (dates.inRange(curDate, times.sunset, times.dusk))) {
-      changeFavicon('img/ico/favicon_night.ico');
-      return 'OverlayGradient night twilight';
-    } else if ((dates.inRange(curDate, times.nauticalDawn, times.dawn)) || (dates.inRange(curDate, times.dusk, times.nauticalDusk))) {
-      changeFavicon('img/ico/favicon_night.ico');
-      return 'OverlayGradient night nauticalTwilight';
-    } else {
-      changeFavicon('img/ico/favicon_night.ico');
-      return 'OverlayGradient night';
-    }
-  }
-
-  function setTimes(pos) {
-    overlay.className = getTimes(pos);
-  }
 
 
   // http://openweathermap.org/API
@@ -444,7 +495,7 @@
   // Прогноз возможно получить по такой ссылке, например
   // http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&lang=ru
 
-  function getWeather(pos) {
+  function setWeather(pos) {
     getData("http://api.openweathermap.org/data/2.5/weather?lat="+ pos.coords.latitude +"&lon="+ pos.coords.longitude +"&lang=ru&callback=insertWeather");
     getData("http://api.openweathermap.org/data/2.5/forecast?lat="+ pos.coords.latitude +"&lon="+ pos.coords.longitude +"&lang=ru&cnt=4&mode=json&callback=insertForecastHours");
     getData("http://api.openweathermap.org/data/2.5/forecast/daily?lat="+ pos.coords.latitude +"&lon="+ pos.coords.longitude +"&lang=ru&cnt=4&mode=json&callback=insertForecastDaily");

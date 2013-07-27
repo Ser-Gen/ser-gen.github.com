@@ -124,228 +124,77 @@
 }
 
 
-/*
-<span class="WeatherIcon">
-    <span class="helper"></span>
-</span>
-*/
-
-.WeatherIcon,
-.WeatherIcon:before,
-.helper:before,
-.helper:after {
-  font-family: 'iconvault';
-  font-size: 1em;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  line-height: 1;
-  text-decoration: inherit;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-}
-
-.WeatherIcon:before,
-.helper:before,
-.helper:after {
-  font-size: 14em;
-}
-.helper:before,
-.helper:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .WeatherIcon {
-  height: 12em;
+  background-repeat: no-repeat;
+  background-size: 107.6667em 11.6667em;
+  height: 11.7em;
   margin: 5em auto 1em;
-  position: relative;
-  width: 14em;
+  width: 11.7em;
 }
 
-/* облака */
-.WeatherIcon:before {
-  color: rgba(255,255,255,.75);
-  content: "\f106";
-  text-shadow: 0 1px 0 rgba(204,204,204,.01);
+.OverlayGradient.day > .WeatherNow .WeatherIcon,
+.OverlayGradient.day > .WeatherForecast .WeatherIcon,
+.OverlayGradient.night .WeatherForecast.daily .WeatherIcon {
+  background-image: url(../img/states_day.png);
 }
-/* светило */
-.helper:before {
-  text-shadow: 0 1px 0 rgba(255,165,0,.01);
-}
-.day .helper:before {
-  color: rgba(255,227,115,.85);
-}
-.night .helper:before {
-  color: rgba(255,246,144,.85);
-}
-/* дождь */
-.helper:after {
-  color: rgba(94,148,204,.85);
-  text-shadow: 0 1px 0 rgba(130,178,228,.01);
+.OverlayGradient.night > .WeatherNow .WeatherIcon,
+.OverlayGradient.night > .WeatherForecast .WeatherIcon,
+.OverlayGradient.night .WeatherIcon {
+  background-image: url(../img/states_night.png);
 }
 
-
-/* Ясно */
-.s800:before {
-  content: "";
+.WeatherIcon.s800 {
+  background-position: 0 0; /* Ясно */
 }
-.day .s800 .helper:before {
-  content: "\f113";
+.WeatherIcon.s801,
+.WeatherIcon.s802,
+.WeatherIcon.s803 {
+  background-position: -12em 0; /* Переменная облачность */
 }
-.night .s800 .helper:before {
-  content: "\f10d";
+.WeatherIcon.s804 {
+  background-position: -24em 0; /* Облачность */
 }
-
- /* Переменная облачность */
-.s801:before,
-.s802:before,
-.s803:before {
-  content: "\f106";
+.WeatherIcon.s500,
+.WeatherIcon.s501 {
+  background-position: -36em 0; /* Небольшой дождь */
 }
-.s801 .helper:before,
-.s802 .helper:before,
-.s803 .helper:before {
-  left: 0.02em;
-  top: -.04em;
+.WeatherIcon.s502,
+.WeatherIcon.s503,
+.WeatherIcon.s504 {
+  background-position: -48em 0; /* Дождь */
 }
-.day .s801 .helper:before,
-.day .s802 .helper:before,
-.day .s803 .helper:before {
-  content: "\f101";
+.WeatherIcon.s520,
+.WeatherIcon.s521,
+.WeatherIcon.s522 {
+  background-position: -48em 0; /* Ливень */
 }
-.night .s801 .helper:before,
-.night .s802 .helper:before,
-.night .s803 .helper:before {
-  content: "\f100";
+.WeatherIcon.s210, /* Гроза небольшая */
+.WeatherIcon.s211, /* Гроза */
+.WeatherIcon.s212, /* Гроза мощная */
+.WeatherIcon.s221 { /* Гроза разрозненная */
+  background-position: -60em 0;
 }
-
- /* Облачность */
-.s804:before {
-  content: "\f106";
+.WeatherIcon.s200, /* Гроза с небольшим дождём */
+.WeatherIcon.s201, /* Гроза с дождём */
+.WeatherIcon.s202, /* Гроза с ливнем */
+.WeatherIcon.s230, /* Гроза с небольшими осадками */
+.WeatherIcon.s231, /* Гроза с осадками */
+.WeatherIcon.s232 { /* Гроза с серьёзными осадками */
+  background-position: -72em 0;
 }
-
-/* Небольшой дождь */
-.s500:before,
-.s501:before {
-  content: "\f105";
+.WeatherIcon.s701, /* Туман */
+.WeatherIcon.s711, /* Дымка */
+.WeatherIcon.s721, /* Дымка густая */
+.WeatherIcon.s731, /* Песчаные и пыльные вихри */
+.WeatherIcon.s741 { /* Густой туман */
+  background-position: -84em 0;
 }
-.day .s500 .helper:before,
-.day .s501 .helper:before {
-  content: "\f101";
-}
-.night .s500 .helper:before,
-.night .s501 .helper:before {
-  content: "\f100";
-}
-.s500 .helper:after,
-.s501 .helper:after {
-  content: "\f107";
-}
-
-/* Дождь */
-.s502:before,
-.s503:before,
-.s504:before {
-  content: "\f105";
-}
-.s502 .helper:after,
-.s503 .helper:after,
-.s504 .helper:after {
-  color: rgba(70,129,195,.75);
-  content: "\f107";
-}
-
-/* Ливень */
-.s520:before,
-.s521:before,
-.s522:before {
-  content: "\f105";
-}
-.s520 .helper:after,
-.s521 .helper:after,
-.s522 .helper:after {
-  content: "\f104";
-}
-
-/* Гроза небольшая */
-.s210:before {
-  color: #000;
-  content: "\f105";
-}
-.day .s210 .helper:before {
-  content: "\f101";
-}
-.night .s210 .helper:before {
-  content: "\f100";
-}
-.s210 .helper:after {
-  color: rgb(255,165,0);
-  content: "\f114";
-}
-
-
-/* Гроза */
-.s200:before, /* Гроза с небольшим дождём */
-.s201:before, /* Гроза с дождём */
-.s202:before, /* Гроза с ливнем */
-.s211:before, /* Гроза */
-.s212:before, /* Гроза мощная */
-.s221:before, /* Гроза разрозненная */
-.s230:before, /* Гроза с небольшими осадками */
-.s231:before, /* Гроза с осадками */
-.s232:before { /* Гроза с серьёзными осадками */
-  color: #000;
-  content: "\f105";
-}
-.s200 .helper:after, /* Гроза с небольшим дождём */
-.s201 .helper:after, /* Гроза с дождём */
-.s202 .helper:after, /* Гроза с ливнем */
-.s211 .helper:after, /* Гроза */
-.s212 .helper:after, /* Гроза мощная */
-.s221 .helper:after, /* Гроза разрозненная */
-.s230 .helper:after, /* Гроза с небольшими осадками */
-.s231 .helper:after, /* Гроза с осадками */
-.s232 .helper:after { /* Гроза с серьёзными осадками */
-  color: rgb(255,165,0);
-  content: "\f114";
-}
-
- /* Небольшой снег */
-.s600:before {
-  content: "\f105";
-}
-.day .s210 .helper:before {
-  content: "\f101";
-}
-.night .s210 .helper:before {
-  content: "\f100";
-}
-.s600 .helper:after {
-  color: #acd3f3;
-  content: "\f10b";
-}
-
-/* Снег */
-.s601:before, /* Снег */
-.s602:before, /* Сильный снег */
-.s611:before, /* Мокрый снег */
-.s621:before { /* Снег ливневый (?) */
-  content: "\f105";
-}
-.s601 .helper:before, /* Снег */
-.s602 .helper:before, /* Сильный снег */
-.s611 .helper:before, /* Мокрый снег */
-.s621 .helper:before { /* Снег ливневый (?) */
-  content: "\f10b";
-}
-
-.s701:before, /* Туман */
-.s711:before, /* Дымка */
-.s721:before, /* Дымка густая */
-.s731:before, /* Песчаные и пыльные вихри */
-.s741:before { /* Густой туман */
-  content: "\f108";
+.WeatherIcon.s600, /* Небольшой снег */
+.WeatherIcon.s601, /* Снег */
+.WeatherIcon.s602, /* Сильный снег */
+.WeatherIcon.s611, /* Мокрый снег */
+.WeatherIcon.s621 { /* Снег ливневый (?) */
+  background-position: -96em 0;
 }
 
 
@@ -467,7 +316,6 @@
 }
 .AddressDetectorIcon:after {
   -webkit-transform: translateX(-50%) rotate(90deg) translateZ(0);
-          transform: translateX(-50%) rotate(90deg);
           transform: translateX(-50%) rotate(90deg) translateZ(0);
 }
 .AddressDetector:hover .AddressDetectorIcon,

@@ -3,8 +3,13 @@
 
 html,
 body {
-  min-height: 100%;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-font-smoothing: antialiased;
 
   /*http://blogs.msdn.com/b/ie/archive/2011/09/20/touch-input-for-ie10-and-metro-style-apps.aspx*/
   -ms-touch-action: none;
@@ -19,6 +24,8 @@ body {
   /*http://habrahabr.ru/post/143381/*/
   font-size: 3.4vh;
   font-weight: 100;
+
+  margin: 0;
 }
 
 .Weather {
@@ -92,12 +99,12 @@ body {
 }
 
 
-.noJS .Address {
-  display: none;
-}
 .OverlayGradient {
   opacity: 0;
 }
 .dataLoading .Address {
   opacity: 0;
+}
+.dataLoaded .Address {
+  opacity: 1;
 }

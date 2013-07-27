@@ -6,8 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Погодник</title>
   <meta name="author" content="Васильев Сергей, веб-технолог">
-  <meta name="description" content="Погодник — погодный подсказчик">
+  <meta name="description" content="Погодник — погодный подсказчик: небольшой эксперимент с геокодированием, определением местонахождения, подгрузкой данных локально, определеним времени суток и погоды, подгрузкой шрифтов и многим другим.">
   <meta name="keywords" content="эксперимент, погодник, погодный помощник, geolocation, suncalc, google maps, geocoder">
+
+  <!-- http://msdn.microsoft.com/en-us/library/gg131029.aspx -->
+  <meta name="application-name" content="Погоник">
+  <meta name="msapplication-tooltip" content="Погодный подсказчик: небольшой эксперимент с геокодированием, определением местонахождения и многим другим">
+
+  <!-- http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx -->
+  <meta name="msapplication-TileImage" content="win_tile_icon.png"/>
+  <meta name="msapplication-TileColor" content="#4681c3"/>
 
   <!-- https://dev.twitter.com/docs/cards -->
   <meta name="twitter:creator" content="@Ser_Gen">
@@ -15,7 +23,8 @@
   <meta name="twitter:description" content="Небольшой эксперимент с геокодированием, определением местонахождения, подгрузкой данных локально, определеним времени суток и погоды, подгрузкой шрифтов и многим другим.">
   <meta name="twitter:image" content="promo_120.png">
 
-  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <!-- возможно, разрешится проблема с отображением в аёс -->
+ <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- https://developers.google.com/fonts/docs/getting_started#Subsets -->
   <link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
@@ -37,6 +46,14 @@
     .Attention h1 {
       font-family: roboto, 'segoe ui', sans-serif;
       text-align: center;
+    }
+
+    [hidden] {
+      display: none;
+    }
+    
+    .noJS .Address {
+      display: none;
     }
   </style>
 
@@ -77,22 +94,30 @@
   <div id="OverlayGradientMain" class="OverlayGradient">
 
     <div id="WeatherNow" class="Weather WeatherNow">
-      <div class="WeatherIcon"></div>
+      <div class="WeatherIcon">
+        <div class="helper"></div>
+      </div>
       <div class="WeatherTemp"></div>
     </div>
 
     <div id="WeatherForecastHours" class="WeatherForecast hours">
       <div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div><div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div><div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div>
     </div>
@@ -100,15 +125,21 @@
     <div id="WeatherForecastDaily" class="WeatherForecast daily">
       <div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div><div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div><div class="Weather">
         <div class="WeatherDate"></div>
-        <div class="WeatherIcon"></div>
+        <div class="WeatherIcon">
+          <div class="helper"></div>
+        </div>
         <div class="WeatherTemp"></div>
       </div>
     </div>
@@ -125,6 +156,7 @@
 
 
 
+  <script src="js/wtffont.js"></script>
   <script>
 
     // http://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it
@@ -134,9 +166,10 @@
         w = window,
         head = d.getElementsByTagName('head')[0],
         body = d.body,
-        // title = d.getElementsByTagName('title')[0],
+        title = d.getElementsByTagName('title')[0],
 
-        checkVW = d.createElement('div');
+        checkVW = d.createElement('span');
+    checkVW.style.display = 'inline-block';
     checkVW.style.width = '100vw';
     body.appendChild(checkVW);
 
@@ -145,6 +178,20 @@
     if (checkVW.offsetWidth !== w.innerWidth) {
       loadCSS('css/mq_fallback.css');
     }
+
+    // Функция, вызываемая после определения формата поддерживаемого шрифта
+    // вофф поддерживается Хромом и Оперой, но выглядит в них не очень
+    // скриптом сначала проверяется поддержка хорошо выглядещего СВГ, затем ВОФФ, поэтому тем, кто поддерживает первый формат, он и отдаётся
+    function fontProcess (format) {
+      if (format === 'woff') {
+        loadCSS('fonts/iconvault_forecastfont_woff.css')
+      } else {
+        var fontStyle = d.createElement('style');
+        fontStyle.textContent = '@font-face {font-family: "iconvault";src: url("fonts/iconvault_forecastfont.svg#iconvault") format("svg"),url("fonts/iconvault_forecastfont.woff") format("woff"),url("fonts/iconvault_forecastfont.ttf") format("truetype");font-weight: normal;font-style: normal;}';
+        head.appendChild(fontStyle);
+      }
+    }
+    wtffont(fontProcess);
 
     // http://stackoverflow.com/questions/9197673/javascript-image-loader
     var files = {
@@ -238,7 +285,6 @@
 
     function dataIsLoaded () {
       if (countDataToLoad > 2) {
-            // && files.cssLoaded == files.css.length 
         if (files.imagesLoaded === files.image.length && files.jsLoaded === files.js.length) {
           body.className = 'dataLoaded';
           address.removeAttribute('disabled');
@@ -259,6 +305,9 @@
     <h1>Пожалуйста, включите жабоскрипт.</h1>
   </div>
 </noscript>
+
+<!-- в первую очередь, для предпросмотра ссылки во ВКонтакте -->
+<img hidden src="promo_120.png" width="120" height="120" alt="Weatherer">
 
 </body>
 </html>
