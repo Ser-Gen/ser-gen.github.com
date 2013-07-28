@@ -7,15 +7,21 @@
  * Создан Сергеем Васильевым (@Ser_Gen)
  */
 
-// http://freehabr.ru/blog/html/1041.html
-var isLocalStorageAvailable;
-(function (){
-  try {
-    isLocalStorageAvailable = 'localStorage' in window && window.localStorage !== null && window.localStorage !== undefined;
-  } catch (e) {
-    isLocalStorageAvailable = false;
-  }
-})();
+
+// Определяется поддержка локального хранилища
+// http://mathiasbynens.be/notes/localstorage-pattern
+var storage,
+    localFail,
+    localUid;
+try {
+  localUid = new Date;
+  (storage = window.localStorage).setItem(localUid, localUid);
+  localFail = storage.getItem(localUid) != localUid;
+  storage.removeItem(localUid);
+  localFail && (storage = false);
+} catch (e) {
+  storage = false;
+}
 
 
 var timeZone = new Date().getTimezoneOffset()/60,
@@ -126,7 +132,7 @@ d.addEventListener('keydown', documentKeyHandler, false);
 
 if (geo_position_js.init()) {
   isLocaleAvailable = true;
-};
+}
 
 
 // выбирает, искать ли пользователя или обходиться полученными данными
@@ -205,15 +211,15 @@ function setData() {
 
 // использование локального хранилища
 function localSaveState(data) {
-  if (isLocalStorageAvailable) {
-    localStorage.setItem('WeathererDB', JSON.stringify(data));
+  if (storage) {
+    storage.setItem('WeathererDB', JSON.stringify(data));
   } else {
     return false;
   }
 }
 function localLoadState() {
-  if (isLocalStorageAvailable) {
-    return JSON.parse(localStorage.getItem('WeathererDB'));
+  if (storage) {
+    return JSON.parse(storage.getItem('WeathererDB'));
   } else {
     return false;
   }
@@ -260,7 +266,7 @@ function urlVar(target, value) {
           return val[1];
         }
       }
-    };
+    }
   } else {
     return false;
   }

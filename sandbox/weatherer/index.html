@@ -188,7 +188,7 @@
     // скриптом сначала проверяется поддержка хорошо выглядещего СВГ, затем ВОФФ, поэтому тем, кто поддерживает первый формат, он и отдаётся
     function fontProcess (format) {
       if (format === 'woff') {
-        loadCSS('fonts/iconvault_forecastfont_woff.css')
+        loadCSS('fonts/iconvault_forecastfont_woff.css');
       } else {
         var fontStyle = d.createElement('style');
         fontStyle.textContent = '@font-face {font-family: "iconvault";src: url("fonts/iconvault_forecastfont.svg#iconvault") format("svg"),url("fonts/iconvault_forecastfont.woff") format("woff"),url("fonts/iconvault_forecastfont.ttf") format("truetype");font-weight: normal;font-style: normal;}';
