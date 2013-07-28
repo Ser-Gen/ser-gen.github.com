@@ -24,7 +24,7 @@
   <meta name="twitter:image" content="promo_120.png">
 
   <!-- возможно, разрешится проблема с отображением в аёс -->
- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- https://developers.google.com/fonts/docs/getting_started#Subsets -->
   <link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
@@ -52,13 +52,15 @@
       display: none;
     }
     
+
+    .dataLoading .Address,
     .noJS .Address {
-      display: none;
+      opacity: 0;
     }
   </style>
 
 <!-- Some IE crutches -->
-<!--[if lte IE 8]>
+<!--[if lte IE 9]>
 
 </head>
 
@@ -76,7 +78,7 @@
   </div>
 <![endif]-->
 
-<!--[if (gt IE 8)|!(IE)]><!-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 
   <link rel="stylesheet" href="css/loader.css">
 
@@ -168,6 +170,8 @@
         body = d.body,
         title = d.getElementsByTagName('title')[0],
 
+    // проверяеся поддержка единиц измерения относительно области просмотра
+    // если поддержки нет — используются медиазапросы
         checkVW = d.createElement('span');
     checkVW.style.display = 'inline-block';
     checkVW.style.width = '100vw';

@@ -71,6 +71,10 @@
   position: absolute;
   -webkit-transition: opacity .5s ease-in;
           transition: opacity .5s ease-in;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 100%;
 }
 .dataLoaded .OverlayGradient {
@@ -359,6 +363,14 @@
   padding: 2em;
   right: 0;
   position: absolute;
+  
+  /*
+   * выносим этот блок в отдельный слой, параллельно решая несколько задач:
+   * проблема в Хроме: при динамическом изменении значения `opacity` элемента `#OverlayGradientMain` происходил скачок `.AddressInput`
+   * дополнительно улучшается качество отрисовки `.AddressDetectorIcon`
+   */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 
 .AddressDetector,
@@ -461,14 +473,14 @@
   left: 50%;
   position: absolute;
   top: -30%;
-  /* элементы нормально отрисовываются только в момент анимации, поэтому лучше их постоянно держать в отдельном слое */
+  
+  /* Яндекс.Браузеру под эту вращающуюся пиктограмму также нужен отдельный слой */
   -webkit-transform: translateX(-50%) translateZ(0);
-          transform: translateX(-50%) translateZ(0);
+          transform: translateX(-50%);
 }
 .AddressDetectorIcon:after {
   -webkit-transform: translateX(-50%) rotate(90deg) translateZ(0);
           transform: translateX(-50%) rotate(90deg);
-          transform: translateX(-50%) rotate(90deg) translateZ(0);
 }
 .AddressDetector:hover .AddressDetectorIcon,
 .AddressDetector:hover .AddressDetectorIcon:before,
