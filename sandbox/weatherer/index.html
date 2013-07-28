@@ -210,11 +210,6 @@
             'js/main.js'
           ],
           jsLoaded : 0,
-          image : [
-            'img/states_day.png',
-            'img/states_night.png'
-          ],
-          imagesLoaded : 0
         },
         countDataToLoad = 0,
 
@@ -225,34 +220,14 @@
     document.addEventListener("DOMContentLoaded", init, false);
     function init()
     {
-      var images = [];
       var css = [];
       body.className = 'dataLoading';
 
-      for(var i = 0, len = files.image.length; i < len; i++) {
-        images[i] = loadImage(files.image[i]);
-      }
-
-      for(i = 0, len = files.css.length; i < len; i++) {
+      for(var i = 0, len = files.css.length; i < len; i++) {
         css[i] = loadCSS(files.css[i]);
       }
 
       loadJS(files.js[files.jsLoaded]);
-    }
-
-    function loadImage(url)
-    {
-      var image = new Image();
-      image.addEventListener("load", imageLoaded, false);
-      image.src = url;
-      return image;
-    }
-    function imageLoaded()
-    {
-      files.imagesLoaded++;
-      if (files.imagesLoaded === files.image.length) {
-        dataIsLoaded();
-      }
     }
 
     // http://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript
@@ -289,7 +264,7 @@
 
     function dataIsLoaded () {
       if (countDataToLoad > 2) {
-        if (files.imagesLoaded === files.image.length && files.jsLoaded === files.js.length) {
+        if (files.jsLoaded === files.js.length) {
           body.className = 'dataLoaded';
           address.removeAttribute('disabled');
           clearTimeout(addressDisabledDisabler);
