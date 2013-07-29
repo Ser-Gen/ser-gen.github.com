@@ -256,7 +256,7 @@ function urlVar(target, value) {
   var localHash = d.location.hash;
   if (target !== undefined) {
     if (value !== undefined) {
-      var re = new RegExp(target,"g");
+      var re = new RegExp('(#|&)'+ target +'=',"g");
       if (localHash !== '') {
         if (!re.test(d.location.hash)) {
           d.location.hash = localHash +'&'+ target +'='+ value;
@@ -296,6 +296,7 @@ function addressDetectHandler() {
   };
 
   pos.alternate = false;
+  d.location.hash = '';
   appLoop();
 
   removeClass(addressDetect, 'isAlertnated');
