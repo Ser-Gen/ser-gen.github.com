@@ -254,18 +254,34 @@ String.prototype.capitalize = function() {
 // работа с переменными в строке адреса
 function urlVar(target, value) {
   var localHash = d.location.hash;
-  if (localHash !== '') {
-    var pairs = localHash.replace('#','').split('&');
-    for (var i = 0, len = pairs.length; i < len; i++) {
-      var val = pairs[i].split('=');
-      if (val[0] == target) {
-        if (value !== undefined) {
-          d.location.hash = localHash.replace(val[1], value);
+  if (target !== undefined) {
+    if (value !== undefined) {
+      var re = new RegExp(target,"g");
+      if (localHash !== '') {
+        if (!re.test(d.location.hash)) {
+          d.location.hash = localHash +'&'+ target +'='+ value;
           return true;
-        } else {
-          return val[1];
+        }
+      } else {
+        d.location.hash = target +'='+ value;
+        return true;
+      }
+    }
+    if (localHash !== '') {
+      var pairs = localHash.replace('#','').split('&');
+      for (var i = 0, len = pairs.length; i < len; i++) {
+        var val = pairs[i].split('=');
+        if (val[0] == target) {
+          if (value !== undefined) {
+            d.location.hash = localHash.replace(val[1], value);
+            return true;
+          } else {
+            return val[1];
+          }
         }
       }
+    } else {
+      return false;
     }
   } else {
     return false;
@@ -297,6 +313,7 @@ function addressFocus() {
 function addressBlur() {
   if (addressVal !== address.value) {
     geoGetter(address.value);
+    urlVar('city', address.value);
     address.setAttribute('disabled', 'disabled');
     addressDisabledDisabler = setTimeout(function () {
       countDataToLoad = 3;
