@@ -1,0 +1,936 @@
+/*!
+
+  Фундамент
+  Сброс стилей и приведение их к нужному состоянию
+
+  https://github.com/Ser-Gen/Themelio
+  
+
+  BASE
+    BASE - ROOT
+    BASE - HTML5
+    BASE - EMBEDDED
+    BASE - FORMS
+    BASE - TABLES
+    BASE - LINKS
+    BASE - LISTS
+    BASE - TYPOGRAPHY
+  
+  USEFUL
+    
+  BLOCKS
+    BLOCKS - EMBEDDED
+    BLOCKS - FORMS
+    BLOCKS - LINKS
+    BLOCKS - BUTTONS
+    BLOCKS - TABLES
+    BLOCKS - LISTS
+    BLOCKS - TYPOGRAPHY
+ 
+ */
+
+
+
+/* BASE
+---------------------------------------------------------------------*/
+
+/* BASE - ROOT
+---------------------------------------------------------------------*/
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+  overflow-y: scroll; /* убираем скачок из-за появляющейся полосы прокрутки */
+  -webkit-font-smoothing: antialiased; /* лучшее сглаживание шрифта в макоси */
+  
+  /* http://stackoverflow.com/questions/6210788/how-to-avoid-ios-automatic-font-size-adjustment — автоматическая настройка размеров текста у мобильных */
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.5;
+  margin: 0; /* Убираем внутренний отступ */
+}
+
+/* Текстовые выделения: убирается тень и добавляются цвета по умолчанию */
+::-moz-selection {
+  background-color: #69c;
+  background-color: Highlight;
+  color: #fff;
+  color: HighlightText;
+  text-shadow: none;
+}
+::selection {
+  background-color: #69c;
+  background-color: Highlight;
+  color: #fff;
+  color: HighlightText;
+  text-shadow: none;
+}
+
+[hidden], /* отсутствует в ИЕ789 */
+template { /* отсутствует в ИЕ, Сафари и ФФлт22 */
+  display: none;
+}
+
+
+
+/* BASE - HTML5
+---------------------------------------------------------------------*/
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; /* исправляется отображение в ИЕ89 */
+}
+
+audio,
+canvas,
+video {
+  display: inline-block; /* исправляется отображение в ИЕ89 */
+}
+.ielte7 audio,
+.ielte7 canvas,
+.ielte7 video {
+  display: inline;
+  zoom: 1;
+}
+
+audio:not([controls]) {
+  display: none; /* не отображать без элементов управления */
+  height: 0; /* убирается ненужная высота в аёс 5 */
+}
+
+
+
+/* BASE - EMBEDDED
+---------------------------------------------------------------------*/
+
+img {
+  border: 0; /* убирается граница, если изображение внутри ссылки в ИЕ89 */
+  vertical-align: middle; /* убирается отступ снизу */
+}
+.ielte7 img {
+  -ms-interpolation-mode: bicubic; /* улучшение отображения при изменении размера */
+}
+
+.ie9 svg:not(:root) {
+  overflow: hidden; /* отображение в ИЕ9 */
+}
+
+figure {
+  margin: 0; /* ИЕ 789, Сафари 5, Опера 11 */
+}
+
+
+
+/* BASE - FORMS
+---------------------------------------------------------------------*/
+
+.ielte7 form {
+  margin: 0;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+  white-space: normal;
+}
+.ielte7 legend {
+  margin-left: -7px;
+}
+
+label,
+input[type="checkbox"],
+input[type="radio"],
+button,
+select,
+.curPointer {
+  cursor: pointer;
+}
+html input[disabled],
+button[disabled],
+select[disabled] {
+  cursor: default;
+}
+
+button,
+input,
+select,
+textarea {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  vertical-align: baseline;
+}
+.ielte7 button,
+.ielte7 input,
+.ielte7 select,
+.ielte7 textarea {
+  vertical-align: middle;
+}
+
+button,
+input {
+  line-height: 1;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* отображение в аёс и андроид */
+  cursor: pointer;
+}
+.ielte7 button,
+.ielte7 html input[type="button"],
+.ielte7 input[type="reset"],
+.ielte7 input[type="submit"] {
+  overflow: visible; /* внутренний отступ */
+}
+
+/* исправление неверно определяемых размеров в ИЕ */
+input[type="checkbox"],
+input[type="radio"] {
+  margin-top: -.17em;
+  padding: 0;
+  vertical-align: middle;
+}
+.ielte7 input[type="checkbox"],
+.ielte7 input[type="radio"] {
+  height: 13px;
+  width: 13px;
+}
+
+/* исправление проблемы с отображением в Хроме */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+/* проблемы с отображением в Хроме и Сафари */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* внутренний отступ в ФФ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* выделение элементов при фокусе в Хроме */
+select:focus,
+button:focus,
+textarea:focus,
+input:focus {
+  outline: 0;
+}
+
+/* вертикальная полоса прокрутки в ИЕ */
+textarea {
+  overflow: auto;
+  resize: vertical;
+  vertical-align: top;
+}
+
+
+
+/* BASE - TABLES
+---------------------------------------------------------------------*/
+
+/* устранение отступов между ячейками */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+/* BASE - LINKS
+---------------------------------------------------------------------*/
+
+a:focus {
+  outline: thin dotted; /* одинаковое выделение выбранных ссылок */
+}
+
+a:active,
+a:hover {
+  outline: 0; /* убираем выделение в других состояниях */
+}
+
+
+
+/* BASE - LISTS
+---------------------------------------------------------------------*/
+
+li ul,
+li ol {
+  margin: .5em 0 1em;
+}
+ul, ol, dl {
+  margin: 0 0 1.5em;
+}
+ul, ol {
+  padding: 0 0 0 3em;
+}
+li, dt, dd {
+  margin-top: .5em;
+  padding-left: 0;
+  position: relative;
+}
+li:first-child,
+dt:first-child,
+dd:first-child {
+  margin-top: 0;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 3em;
+}
+
+
+
+/* BASE - TYPOGRAPHY
+---------------------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1em;
+  margin: .75em 0 .325em;
+}
+
+h2 {
+  font-size: 1.5em;
+  line-height: 1em;
+  margin: 1em 0 .5em;
+}
+
+h3 {
+  font-size: 1.17em;
+  line-height: 1.2821em;
+  margin: 1.2821em 0 .6411em;
+}
+
+h4 {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 1.5em 0 .75em;
+}
+
+h5 {
+  font-size: 0.83em;
+  line-height: 1.8072em;
+  margin: 1.8072em 0 .9036em;
+}
+
+h6 {
+  font-size: .67em;
+  line-height: 2.2388em;
+  margin: 2.2388em 0 1.1194em;
+}
+
+p,
+pre,
+blockquote {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 0 1.5em;
+}
+
+p + ul,
+p + ol,
+p + dl {
+  margin-top: -.75em;
+}
+
+
+abbr[title] {
+  border-bottom: 1px dotted; /* стиль отсутствует в ИЕ 89, Сафари 5 и в Хроме */
+}
+
+b, strong {
+  font-weight: 700;
+}
+
+i, em {
+  font-style: italic;
+}
+
+dfn {
+  font-style: italic; /* стиль отсутствует в Сафари 5 и Хроме */
+}
+
+/* в ФФ теперь не отличается */
+hr {
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
+  height: 0;
+}
+
+/* стиль отсутствует в ИЕ 789 */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/* стиль отсутствует в Сафари 5 и Хроме */
+code, kbd, pre, samp {
+  font-family: coursiva, monospace, serif;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap; /* улучшает читаемость во всех браузерах */
+}
+
+/* кавычки для русского и английского языков */
+q:lang(en), .q.en {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+q:lang(ru), .q.ru {
+  quotes: '\00AB' '\00BB' '\201E' '\201C';
+}
+
+big {
+  font-size: 120%;
+}
+small {
+  font-size: 80%;
+}
+
+/* чтобы не влияли на высоту строки */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -.5em;
+}
+sub {
+  bottom: -.25em;
+}
+
+
+
+/* USEFUL
+---------------------------------------------------------------------*/
+
+/* предотвращает схлопывание элемента, если в нём есть плавающие */
+.group:before,
+.group:after {
+  content: " ";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.ielte7 .group {
+  zoom: 1;
+}
+
+/* альтернативный способ */
+.groupIB {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+}
+.ielte7 .groupIB {
+  display: inline;
+  zoom: 1;
+}
+
+/* для использования с отдельным элементом */
+.clearBoth {
+  clear: both;
+}
+
+
+/* способы скрытия элемента */
+.hide {
+  display: none;
+}
+.hideNow {
+  display: none !important;
+}
+
+.hideAway {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+  visibility: hidden;
+}
+.hideAwayNow {
+  left: -9999px !important;
+  position: absolute !important;
+  top: -9999px !important;
+  visibility: hidden !important;
+}
+
+    .showBlock { display: block; }
+   .showInline { display: inline; }
+.showInlineBlock { display: inline-block; }
+
+    .showBlockNow { display: block !important; }
+   .showInlineNow { display: inline !important; }
+.showInlineBlockNow { display: inline-block !important; }
+
+.ielte7 .showInlineBlock {
+  display: inline;
+  zoom: 1;
+}
+.ielte7 .showInlineBlockNow {
+  display: inline !important;
+  zoom: 1;
+}
+
+
+/* изображение растягивается на всю ширину контейнера, не искажаясь */
+.imgFill {
+  height: auto;
+  width: 100%;
+}
+
+/* растяжка элемента на всю ширину контейнера */
+.widthFull {
+  width: 100%;
+}
+
+/* предзагрузка изображений */
+/*
+<button>
+  <span class="Icon order imgPreload imgPreloadLoading"></span>
+  Купить
+</button>
+*/
+
+.imgPreload:after {
+  content: '';
+  display: inline;
+}
+.imgPreloadLoading:after,
+.Btn.loading .Icon {
+  background: url(/img/icons/loading.gif);
+}
+
+
+/*
+<label for="input">Заголовок</label>
+<input id="input" type="text" />
+*/
+
+.fieldRequired:after {
+  color: red;
+  content: '*';
+  font-weight: bold;
+  margin-left: .3em;
+}
+.ielte7 .fieldRequired {
+  background-color: #fdd;
+  display: inline;
+  min-height: 1em;
+  min-width: 1em;
+  zoom: 1;
+}
+
+
+/* скрытие элементов, нуждающихся в джс, класс для модернизра */
+.isNeedsJS {
+  opacity: 0;
+  visibility: hidden;
+}
+.has-js .isNeedsJS {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* скрытие текста в элементе */
+.textHide {
+  overflow: hidden;
+}
+.textHide:before {
+  content: "";
+  display: block;
+  height: 150%;
+}
+.ielte7 .textHide {
+  text-indent: -9999px; /* проблема: строчно-блоковые элементы улетают */
+}
+
+.textHideAway {
+  text-indent: -9999px;
+}
+
+
+/* невыделяемый текст */
+.noUserSelect {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.noUserSelect::selection { color: inherit }
+
+/* отключение всплытия информации о ссылке при долгом нажатии на ней, http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#/apple_ref/css/property/-webkit-touch-callout */
+.noTouchCallout {
+  -webkit-touch-callout: none;
+}
+
+/* https://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html */
+/* аналог для ИЕ10 на ВинФон8 — http://blogs.windows.com/windows_phone/b/wpdev/archive/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10.aspx */
+.noTapHighlight {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* верхний регистр с разрядкой */
+.textUppercase {
+  font-size: .875em;
+  letter-spacing: .1em;
+  margin-right: -.1em;
+  text-transform: uppercase;
+}
+
+/* полупробел */
+/* аналог в хтмл — `&#8198;` [отсюда](http://stackoverflow.com/a/8515417) */
+/* неразрывный вариант — `&#8239;` [отсюда](http://en.wikipedia.org/wiki/Non-breaking_space) */
+/*
+<span class="halfSpace">&nbsp;</span>
+*/
+.textHalfSpace {
+  font-size: 50%;
+  line-height: 1;
+}
+
+/* предотвращает перенос слов на новую строку в элементе */
+.textNowrap {
+  white-space: nowrap;
+}
+
+
+
+/* BLOCKS
+---------------------------------------------------------------------*/
+
+/* BLOCKS - EMBEDDED
+---------------------------------------------------------------------*/
+
+/*
+<span class="Icon actions"></span>
+*/
+
+.Icon {
+  background: url(../img/icons/ui.png) no-repeat;
+  display: inline-block;
+  margin-top: -.17em;
+  vertical-align: middle;
+}
+.ielte7 .Icon {
+  display: inline;
+  zoom: 1;
+}
+a .Icon {
+  margin-right: .4em;
+}
+
+
+
+/* BLOCKS - FORMS
+---------------------------------------------------------------------*/
+
+/*
+<form class="Form">
+  <div class="Form__field">
+    <label>
+      <input type="text">
+      Напишите что-нибудь
+    </label>
+  </div>
+</form>
+*/
+
+.Form__field {
+  margin-top: 1.5em;
+  position: relative;
+}
+.Form__field:first-child {
+  margin-top: 0;
+}
+.Form__field.ib {
+  display: inline-block;
+  margin-top: 0;
+}
+
+
+/*
+<form action="#" class="FormSearch headerSearch">
+  <button class="FormSearch__submit" type="submit"><span class="textHide Icon enterBtn">Найти</span></button>
+  <label class="FormSearch__wrapper"><input class="FormSearch__field" type="text"><span class="Icon search"></span></label>
+</form>
+*/
+
+.FormSearch {
+  position: relative;
+  width: 100%;
+}
+.FormSearch__wrapper {
+  display: block;
+}
+.FormSearch__field {
+  width: 100%;
+}
+.FormSearch__submit {
+  float: right;
+}
+
+
+/*
+<label class="FieldFile">
+  <span class="FieldFile__button">Загрузить</span>
+  <span class="FieldFile__wrapper">
+    <input type="file" class="FieldFile__input" />
+  </span>
+</label>
+*/
+
+.FieldFile {
+  display: inline-block;
+  position: relative;
+}
+.FieldFile__wrapper {
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.FieldFile__input {
+  font-size: 48em;
+  height: auto;
+  left: -11.416666em;
+  opacity: 0;
+  position: absolute;
+  top: -.3em;
+  width: 12.5em;
+  visibility: hidden;
+}
+
+
+
+/* BLOCKS - LINKS
+---------------------------------------------------------------------*/
+
+a,
+.pseudoLink {
+  color: #0063b7;
+}
+
+.pseudoLink {
+  border-bottom-style: dotted;
+  cursor: pointer;
+}
+
+a.Icon {
+  border-bottom: 0;
+}
+
+
+
+/* BLOCKS - BUTTONS
+---------------------------------------------------------------------*/
+
+/*
+<a class="Btn" href="#">Напомнить</a>
+<button class="Btn">Купить</button>
+<input class="Btn" type="submit" value="Применить">
+*/
+
+.Btn {
+  border: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  overflow: visible;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.Btn:hover {
+  text-decoration: none;
+}
+.ielte7 .Btn {
+  display: inline;
+  zoom: 1;
+}
+
+.Btn.big {
+  font-size: 1.25em;
+}
+.Btn.small {
+  font-size: .75em;
+}
+
+
+.BtnDefault {
+  line-height: 1;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+
+
+/* BLOCKS - TABLES
+---------------------------------------------------------------------*/
+
+/*
+<a class="pseudoTable">
+  <span class="col name">Имя</span>
+  <span class="col age">Возраст</span>
+  <span class="col weight">Вес</span>
+</a>
+*/
+
+.pseudoTable .col {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  padding: .75em;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+
+
+/* BLOCKS - LISTS
+---------------------------------------------------------------------*/
+
+ul.custom > li:before {
+  cursor: default;
+  margin-right: .35em;
+  position: absolute;
+  right: 100%;
+  top: 0;
+}
+ul.custom.inside > li:before {
+  position: static;
+}
+
+ul.custom.dashed > li:before {
+  content: '\2014';
+  margin-right: .5em;
+}
+
+
+.List.ib.separated {
+  cursor: default;
+}
+.List.ib.separated .List__item:after {
+  content: "|";
+  margin-left: .55em;
+  margin-right: .55em;
+  opacity: .75;
+}
+.List.ib.separated .List__item.last:after {
+  content: none;
+}
+
+
+/*
+<ul class="List">
+  <li class="List__item">Пункт меню, например</li>
+</ul>
+*/
+
+.List {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.List__item {
+  margin: 0;
+}
+.List__item:before {
+  content: "";
+}
+.List.ib .List__item {
+  display: inline-block;
+}
+.ielte7 .List.ib .List__item {
+  display: inline;
+  zoom: 1;
+}
+
+.List.ib.justify {
+  text-align: justify;
+}
+.List.ib.justify .List__item {
+  text-align: left;
+}
+.List.ib.justify:after {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  width: 100%;
+}
+
+
+
+/* BLOCKS - TYPOGRAPHY
+---------------------------------------------------------------------*/
+
+.H {
+  font: inherit;
+  margin: 0;
+}
+.subheader {
+  font-weight: normal;
+}

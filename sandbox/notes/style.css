@@ -1,0 +1,303 @@
+html {
+  height: 100%;
+  width: 100%;
+}   
+body {
+  background: -webkit-linear-gradient(#c2c9cf,#fff) fixed;
+     background: -moz-linear-gradient(#c2c9cf,#fff) fixed;
+       background: -o-linear-gradient(#c2c9cf,#fff) fixed;
+          background: linear-gradient(#c2c9cf,#fff) fixed;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#c2c9cf,endColorstr=#ffffff);
+  font: normal 12px/18px "Segoe UI", "PT Sans", Helvetica, tahoma, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.group:after {
+  clear: both;
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+*:first-child+html .group { zoom: 1; }
+
+header {
+  background: rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.25);
+     -moz-box-shadow: 0 1px 0 rgba(0,0,0,.25);
+          box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  display: block;
+  left: 0;
+  opacity: .25;
+  padding: 10px 0;
+  position: fixed;
+  text-align: left;
+  -webkit-transition:
+            opacity .05s ease-in,
+            background .05s ease-in;
+     -moz-transition:
+            opacity .05s ease-in,
+            background .05s ease-in;
+       -o-transition:
+            opacity .05s ease-in,
+            background .05s ease-in;
+          transition:
+            opacity .05s ease-in,
+            background .05s ease-in;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+header:hover {
+  background: rgba(0,0,0,.5);
+  opacity: 1;
+  -webkit-transition:
+            opacity .15s ease-in,
+            background .15s ease-in;
+     -moz-transition:
+            opacity .15s ease-in,
+            background .15s ease-in;
+       -o-transition:
+            opacity .15s ease-in,
+            background .15s ease-in;
+          transition:
+            opacity .15s ease-in,
+            background .15s ease-in;
+}
+header span {
+  background: url(interface.png) 0 0 no-repeat;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  height: 40px;
+  margin: 0 50px;
+  opacity: .75;
+  text-indent: -9999px;
+  width: 40px;
+}
+header span:hover {
+  opacity: 1;
+}
+header span.add {
+  margin: 0 0 0 50px;
+}
+header span.save {
+  background-position: -88px 0;
+  cursor: pointer;
+  float: right;
+  margin: 0 30px 0 0;
+}
+header span.refresh {
+  background-position: -44px 0;
+  display: none;
+  float: right;
+  margin: 0 30px 0 0;
+}
+
+upload {
+  background: url(interface.png) -132px 0 no-repeat;
+  display: inline-block;
+  float: right;
+  height: 40px;
+  margin: 0 50px 0 0;
+  opacity: .75;
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999px;
+  width: 40px;
+}
+upload.hover {
+  opacity: 1;
+}
+upload input {
+  cursor: pointer;
+  display: block;
+  font-size: 30em;
+  left: -4900px;
+  opacity: 0;
+  position: absolute;
+  top: -200px;
+  width: 5500px;
+}
+
+list {
+  display: block;
+  padding: 50px 0 40px;
+}
+
+note {
+  background: #fff0be;
+  -webkit-box-shadow:
+            inset 1px 3px 0 rgba(255,255,255,.5),
+            0 15px 0 -10px rgba(0,0,0,.3);
+     -moz-box-shadow:
+            inset 1px 3px 0 rgba(255,255,255,.5),
+            0 15px 0 -10px rgba(0,0,0,.3);
+          box-shadow:
+            inset 1px 3px 0 rgba(255,255,255,.5),
+            0 15px 0 -10px rgba(0,0,0,.3);
+  color: rgba(0,0,0,.75);
+  display: inline-block;
+  margin: 50px 40px 100px;
+  position: relative;
+  vertical-align: top;
+  width: 300px;
+  z-index: 1;
+}
+note:after {
+  background: url(interface.png) 0 -123px no-repeat;
+  bottom: -74px;
+  content: "";
+  display: block;
+  height: 74px;
+  position: absolute;
+  width: 300px;
+}
+note.none {
+  display: none;
+}
+
+note.del h1 {
+  color: rgba(0,0,0,.25);
+  text-decoration: line-through;
+}
+note.del span.del {
+  opacity: 0.75;
+}
+note.del span.del:hover {
+  opacity: 1;
+}
+note.imp {
+  background: #ffd6be;
+  box-shadow: 1px 3px 0 rgba(255,255,255,.3) inset;
+}
+note.imp:after {
+  background: url(interface.png) 0 -46px no-repeat;
+}   
+
+note span {
+  cursor: pointer;
+  text-indent: -9999px;
+}
+note span.del,
+note span.imp {
+  background: url(interface.png) no-repeat;
+  display: block;
+  height: 31px;
+  opacity: 0;
+  width: 30px;
+}
+note:hover span.del,
+note:hover span.imp {
+  opacity: .5;
+}
+note span.del {
+  background-position: -176px -9px;
+  margin: 15px auto 0 15px;
+}
+note span.imp {
+  background-position: -212px -9px;
+  margin: -31px 15px 0 auto;
+}
+note span.del:hover {
+  opacity: .75;
+}
+note span.imp:hover {
+  opacity: .75;
+}
+note.imp span.del {
+  opacity: .15;
+}
+note.imp span.imp {
+  opacity: .75;
+}
+note.imp:hover span.del {
+  opacity: .5;
+}
+note.imp span.del:hover {
+  opacity: .75;
+}
+note.imp span.imp:hover {
+  opacity: 1;
+}
+
+note h1 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 25px;
+  outline: none;
+  padding: 0 25px;
+  text-align: left;
+  word-wrap: break-word;
+}
+note h1:focus {
+  color: rgba(0,0,0,1);
+}
+note textarea {
+  background: none;
+  border: none;
+  display: block;
+  font-family: "Segoe UI", "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 25px;
+  outline: none;
+  overflow-y: auto;
+  padding: 26px 25px 16px;
+  resize: none;
+  text-align: left;
+  width: 250px;
+}
+note em {
+  color: rgba(0,0,0,.3);
+  display: none;
+  margin: 10px;
+  text-align: right;
+}
+note strong {
+  display: none;
+}
+
+notice {
+  cursor: default;
+  font-size: 30px;
+  height: 300px;
+  line-height: 1.4em;
+  left: 50%;
+  margin: -150px 0 0 -255px;
+  opacity: 0;
+  position: absolute;
+  text-align: left;
+  top: 50%;
+  width: 510px;
+  z-index: 0;
+  -webkit-transition: opacity .25s ease-out;
+     -moz-transition: opacity .25s ease-out;
+       -o-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
+}
+.intro notice {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in;
+     -moz-transition: opacity .5s ease-in;
+       -o-transition: opacity .5s ease-in;
+          transition: opacity .5s ease-in;
+}
+notice.wip {
+  color: rgba(0,0,0,.5);
+  height: 214px;
+  margin: -107px 0 0 -255px;
+}
+notice h2 {
+  font-size: 40px;
+  font-weight: normal;
+  margin: 0 0 .625em;
+}
+notice p {
+  margin: 0;
+}
