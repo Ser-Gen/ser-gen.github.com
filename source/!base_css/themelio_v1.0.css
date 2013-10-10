@@ -1,7 +1,7 @@
 /*!
 
-  Фундамент
-  Сброс стилей и приведение их к нужному состоянию
+  Р¤СѓРЅРґР°РјРµРЅС‚
+  РЎР±СЂРѕСЃ СЃС‚РёР»РµР№ Рё РїСЂРёРІРµРґРµРЅРёРµ РёС… Рє РЅСѓР¶РЅРѕРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ
 
   https://github.com/Ser-Gen/Themelio
   
@@ -40,20 +40,20 @@
 html {
   font-size: 62.5%;
   font-family: sans-serif;
-  overflow-y: scroll; /* убираем скачок из-за появляющейся полосы прокрутки */
-  -webkit-font-smoothing: antialiased; /* лучшее сглаживание шрифта в макоси */
+  overflow-y: scroll; /* СѓР±РёСЂР°РµРј СЃРєР°С‡РѕРє РёР·-Р·Р° РїРѕСЏРІР»СЏСЋС‰РµР№СЃСЏ РїРѕР»РѕСЃС‹ РїСЂРѕРєСЂСѓС‚РєРё */
+  -webkit-font-smoothing: antialiased; /* Р»СѓС‡С€РµРµ СЃРіР»Р°Р¶РёРІР°РЅРёРµ С€СЂРёС„С‚Р° РІ РјР°РєРѕСЃРё */
   
-  /* http://stackoverflow.com/questions/6210788/how-to-avoid-ios-automatic-font-size-adjustment — автоматическая настройка размеров текста у мобильных */
+  /* http://stackoverflow.com/questions/6210788/how-to-avoid-ios-automatic-font-size-adjustment вЂ” Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РЅР°СЃС‚СЂРѕР№РєР° СЂР°Р·РјРµСЂРѕРІ С‚РµРєСЃС‚Р° Сѓ РјРѕР±РёР»СЊРЅС‹С… */
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
 body {
   line-height: 1.5;
-  margin: 0; /* Убираем внутренний отступ */
+  margin: 0; /* РЈР±РёСЂР°РµРј РІРЅСѓС‚СЂРµРЅРЅРёР№ РѕС‚СЃС‚СѓРї */
 }
 
-/* Текстовые выделения: убирается тень и добавляются цвета по умолчанию */
+/* РўРµРєСЃС‚РѕРІС‹Рµ РІС‹РґРµР»РµРЅРёСЏ: СѓР±РёСЂР°РµС‚СЃСЏ С‚РµРЅСЊ Рё РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ С†РІРµС‚Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ */
 ::-moz-selection {
   background-color: #69c;
   background-color: Highlight;
@@ -69,8 +69,8 @@ body {
   text-shadow: none;
 }
 
-[hidden], /* отсутствует в ИЕ789 */
-template { /* отсутствует в ИЕ, Сафари и ФФлт22 */
+[hidden], /* РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РР•789 */
+template { /* РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РР•, РЎР°С„Р°СЂРё Рё Р¤Р¤Р»С‚22 */
   display: none;
 }
 
@@ -91,13 +91,13 @@ main,
 nav,
 section,
 summary {
-  display: block; /* исправляется отображение в ИЕ89 */
+  display: block; /* РёСЃРїСЂР°РІР»СЏРµС‚СЃСЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РІ РР•89 */
 }
 
 audio,
 canvas,
 video {
-  display: inline-block; /* исправляется отображение в ИЕ89 */
+  display: inline-block; /* РёСЃРїСЂР°РІР»СЏРµС‚СЃСЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РІ РР•89 */
 }
 .ielte7 audio,
 .ielte7 canvas,
@@ -107,8 +107,8 @@ video {
 }
 
 audio:not([controls]) {
-  display: none; /* не отображать без элементов управления */
-  height: 0; /* убирается ненужная высота в аёс 5 */
+  display: none; /* РЅРµ РѕС‚РѕР±СЂР°Р¶Р°С‚СЊ Р±РµР· СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ */
+  height: 0; /* СѓР±РёСЂР°РµС‚СЃСЏ РЅРµРЅСѓР¶РЅР°СЏ РІС‹СЃРѕС‚Р° РІ Р°С‘СЃ 5 */
 }
 
 
@@ -117,19 +117,19 @@ audio:not([controls]) {
 ---------------------------------------------------------------------*/
 
 img {
-  border: 0; /* убирается граница, если изображение внутри ссылки в ИЕ89 */
-  vertical-align: middle; /* убирается отступ снизу */
+  border: 0; /* СѓР±РёСЂР°РµС‚СЃСЏ РіСЂР°РЅРёС†Р°, РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІРЅСѓС‚СЂРё СЃСЃС‹Р»РєРё РІ РР•89 */
+  vertical-align: middle; /* СѓР±РёСЂР°РµС‚СЃСЏ РѕС‚СЃС‚СѓРї СЃРЅРёР·Сѓ */
 }
 .ielte7 img {
-  -ms-interpolation-mode: bicubic; /* улучшение отображения при изменении размера */
+  -ms-interpolation-mode: bicubic; /* СѓР»СѓС‡С€РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРё РёР·РјРµРЅРµРЅРёРё СЂР°Р·РјРµСЂР° */
 }
 
 .ie9 svg:not(:root) {
-  overflow: hidden; /* отображение в ИЕ9 */
+  overflow: hidden; /* РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РІ РР•9 */
 }
 
 figure {
-  margin: 0; /* ИЕ 789, Сафари 5, Опера 11 */
+  margin: 0; /* РР• 789, РЎР°С„Р°СЂРё 5, РћРїРµСЂР° 11 */
 }
 
 
@@ -204,17 +204,17 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button; /* отображение в аёс и андроид */
+  -webkit-appearance: button; /* РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РІ Р°С‘СЃ Рё Р°РЅРґСЂРѕРёРґ */
   cursor: pointer;
 }
 .ielte7 button,
 .ielte7 html input[type="button"],
 .ielte7 input[type="reset"],
 .ielte7 input[type="submit"] {
-  overflow: visible; /* внутренний отступ */
+  overflow: visible; /* РІРЅСѓС‚СЂРµРЅРЅРёР№ РѕС‚СЃС‚СѓРї */
 }
 
-/* исправление неверно определяемых размеров в ИЕ */
+/* РёСЃРїСЂР°РІР»РµРЅРёРµ РЅРµРІРµСЂРЅРѕ РѕРїСЂРµРґРµР»СЏРµРјС‹С… СЂР°Р·РјРµСЂРѕРІ РІ РР• */
 input[type="checkbox"],
 input[type="radio"] {
   margin-top: -.17em;
@@ -227,7 +227,7 @@ input[type="radio"] {
   width: 13px;
 }
 
-/* исправление проблемы с отображением в Хроме */
+/* РёСЃРїСЂР°РІР»РµРЅРёРµ РїСЂРѕР±Р»РµРјС‹ СЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј РІ РҐСЂРѕРјРµ */
 input[type="search"] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
@@ -235,20 +235,20 @@ input[type="search"] {
           box-sizing: content-box;
 }
 
-/* проблемы с отображением в Хроме и Сафари */
+/* РїСЂРѕР±Р»РµРјС‹ СЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј РІ РҐСЂРѕРјРµ Рё РЎР°С„Р°СЂРё */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-/* внутренний отступ в ФФ */
+/* РІРЅСѓС‚СЂРµРЅРЅРёР№ РѕС‚СЃС‚СѓРї РІ Р¤Р¤ */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-/* выделение элементов при фокусе в Хроме */
+/* РІС‹РґРµР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РїСЂРё С„РѕРєСѓСЃРµ РІ РҐСЂРѕРјРµ */
 select:focus,
 button:focus,
 textarea:focus,
@@ -256,7 +256,7 @@ input:focus {
   outline: 0;
 }
 
-/* вертикальная полоса прокрутки в ИЕ */
+/* РІРµСЂС‚РёРєР°Р»СЊРЅР°СЏ РїРѕР»РѕСЃР° РїСЂРѕРєСЂСѓС‚РєРё РІ РР• */
 textarea {
   overflow: auto;
   resize: vertical;
@@ -268,7 +268,7 @@ textarea {
 /* BASE - TABLES
 ---------------------------------------------------------------------*/
 
-/* устранение отступов между ячейками */
+/* СѓСЃС‚СЂР°РЅРµРЅРёРµ РѕС‚СЃС‚СѓРїРѕРІ РјРµР¶РґСѓ СЏС‡РµР№РєР°РјРё */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -280,12 +280,12 @@ table {
 ---------------------------------------------------------------------*/
 
 a:focus {
-  outline: thin dotted; /* одинаковое выделение выбранных ссылок */
+  outline: thin dotted; /* РѕРґРёРЅР°РєРѕРІРѕРµ РІС‹РґРµР»РµРЅРёРµ РІС‹Р±СЂР°РЅРЅС‹С… СЃСЃС‹Р»РѕРє */
 }
 
 a:active,
 a:hover {
-  outline: 0; /* убираем выделение в других состояниях */
+  outline: 0; /* СѓР±РёСЂР°РµРј РІС‹РґРµР»РµРЅРёРµ РІ РґСЂСѓРіРёС… СЃРѕСЃС‚РѕСЏРЅРёСЏС… */
 }
 
 
@@ -381,7 +381,7 @@ p + dl {
 
 
 abbr[title] {
-  border-bottom: 1px dotted; /* стиль отсутствует в ИЕ 89, Сафари 5 и в Хроме */
+  border-bottom: 1px dotted; /* СЃС‚РёР»СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РР• 89, РЎР°С„Р°СЂРё 5 Рё РІ РҐСЂРѕРјРµ */
 }
 
 b, strong {
@@ -393,33 +393,33 @@ i, em {
 }
 
 dfn {
-  font-style: italic; /* стиль отсутствует в Сафари 5 и Хроме */
+  font-style: italic; /* СЃС‚РёР»СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РЎР°С„Р°СЂРё 5 Рё РҐСЂРѕРјРµ */
 }
 
-/* в ФФ теперь не отличается */
+/* РІ Р¤Р¤ С‚РµРїРµСЂСЊ РЅРµ РѕС‚Р»РёС‡Р°РµС‚СЃСЏ */
 hr {
   -moz-box-sizing: content-box;
        box-sizing: content-box;
   height: 0;
 }
 
-/* стиль отсутствует в ИЕ 789 */
+/* СЃС‚РёР»СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РР• 789 */
 mark {
   background: #ff0;
   color: #000;
 }
 
-/* стиль отсутствует в Сафари 5 и Хроме */
+/* СЃС‚РёР»СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РЎР°С„Р°СЂРё 5 Рё РҐСЂРѕРјРµ */
 code, kbd, pre, samp {
   font-family: coursiva, monospace, serif;
   font-size: 1em;
 }
 
 pre {
-  white-space: pre-wrap; /* улучшает читаемость во всех браузерах */
+  white-space: pre-wrap; /* СѓР»СѓС‡С€Р°РµС‚ С‡РёС‚Р°РµРјРѕСЃС‚СЊ РІРѕ РІСЃРµС… Р±СЂР°СѓР·РµСЂР°С… */
 }
 
-/* кавычки для русского и английского языков */
+/* РєР°РІС‹С‡РєРё РґР»СЏ СЂСѓСЃСЃРєРѕРіРѕ Рё Р°РЅРіР»РёР№СЃРєРѕРіРѕ СЏР·С‹РєРѕРІ */
 q:lang(en), .q.en {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
@@ -434,7 +434,7 @@ small {
   font-size: 80%;
 }
 
-/* чтобы не влияли на высоту строки */
+/* С‡С‚РѕР±С‹ РЅРµ РІР»РёСЏР»Рё РЅР° РІС‹СЃРѕС‚Сѓ СЃС‚СЂРѕРєРё */
 sub, sup {
   font-size: 75%;
   line-height: 0;
@@ -453,7 +453,7 @@ sub {
 /* USEFUL
 ---------------------------------------------------------------------*/
 
-/* предотвращает схлопывание элемента, если в нём есть плавающие */
+/* РїСЂРµРґРѕС‚РІСЂР°С‰Р°РµС‚ СЃС…Р»РѕРїС‹РІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°, РµСЃР»Рё РІ РЅС‘Рј РµСЃС‚СЊ РїР»Р°РІР°СЋС‰РёРµ */
 .group:before,
 .group:after {
   content: " ";
@@ -466,7 +466,7 @@ sub {
   zoom: 1;
 }
 
-/* альтернативный способ */
+/* Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ СЃРїРѕСЃРѕР± */
 .groupIB {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -479,13 +479,13 @@ sub {
   zoom: 1;
 }
 
-/* для использования с отдельным элементом */
+/* РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃ РѕС‚РґРµР»СЊРЅС‹Рј СЌР»РµРјРµРЅС‚РѕРј */
 .clearBoth {
   clear: both;
 }
 
 
-/* способы скрытия элемента */
+/* СЃРїРѕСЃРѕР±С‹ СЃРєСЂС‹С‚РёСЏ СЌР»РµРјРµРЅС‚Р° */
 .hide {
   display: none;
 }
@@ -524,22 +524,22 @@ sub {
 }
 
 
-/* изображение растягивается на всю ширину контейнера, не искажаясь */
+/* РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЂР°СЃС‚СЏРіРёРІР°РµС‚СЃСЏ РЅР° РІСЃСЋ С€РёСЂРёРЅСѓ РєРѕРЅС‚РµР№РЅРµСЂР°, РЅРµ РёСЃРєР°Р¶Р°СЏСЃСЊ */
 .imgFill {
   height: auto;
   width: 100%;
 }
 
-/* растяжка элемента на всю ширину контейнера */
+/* СЂР°СЃС‚СЏР¶РєР° СЌР»РµРјРµРЅС‚Р° РЅР° РІСЃСЋ С€РёСЂРёРЅСѓ РєРѕРЅС‚РµР№РЅРµСЂР° */
 .widthFull {
   width: 100%;
 }
 
-/* предзагрузка изображений */
+/* РїСЂРµРґР·Р°РіСЂСѓР·РєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№ */
 /*
 <button>
   <span class="Icon order imgPreload imgPreloadLoading"></span>
-  Купить
+  РљСѓРїРёС‚СЊ
 </button>
 */
 
@@ -554,7 +554,7 @@ sub {
 
 
 /*
-<label for="input">Заголовок</label>
+<label for="input">Р—Р°РіРѕР»РѕРІРѕРє</label>
 <input id="input" type="text" />
 */
 
@@ -573,7 +573,7 @@ sub {
 }
 
 
-/* скрытие элементов, нуждающихся в джс, класс для модернизра */
+/* СЃРєСЂС‹С‚РёРµ СЌР»РµРјРµРЅС‚РѕРІ, РЅСѓР¶РґР°СЋС‰РёС…СЃСЏ РІ РґР¶СЃ, РєР»Р°СЃСЃ РґР»СЏ РјРѕРґРµСЂРЅРёР·СЂР° */
 .isNeedsJS {
   opacity: 0;
   visibility: hidden;
@@ -584,7 +584,7 @@ sub {
 }
 
 
-/* скрытие текста в элементе */
+/* СЃРєСЂС‹С‚РёРµ С‚РµРєСЃС‚Р° РІ СЌР»РµРјРµРЅС‚Рµ */
 .textHide {
   overflow: hidden;
 }
@@ -594,7 +594,7 @@ sub {
   height: 150%;
 }
 .ielte7 .textHide {
-  text-indent: -9999px; /* проблема: строчно-блоковые элементы улетают */
+  text-indent: -9999px; /* РїСЂРѕР±Р»РµРјР°: СЃС‚СЂРѕС‡РЅРѕ-Р±Р»РѕРєРѕРІС‹Рµ СЌР»РµРјРµРЅС‚С‹ СѓР»РµС‚Р°СЋС‚ */
 }
 
 .textHideAway {
@@ -602,7 +602,7 @@ sub {
 }
 
 
-/* невыделяемый текст */
+/* РЅРµРІС‹РґРµР»СЏРµРјС‹Р№ С‚РµРєСЃС‚ */
 .noUserSelect {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -611,18 +611,18 @@ sub {
 }
 .noUserSelect::selection { color: inherit }
 
-/* отключение всплытия информации о ссылке при долгом нажатии на ней, http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#/apple_ref/css/property/-webkit-touch-callout */
+/* РѕС‚РєР»СЋС‡РµРЅРёРµ РІСЃРїР»С‹С‚РёСЏ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃСЃС‹Р»РєРµ РїСЂРё РґРѕР»РіРѕРј РЅР°Р¶Р°С‚РёРё РЅР° РЅРµР№, http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#/apple_ref/css/property/-webkit-touch-callout */
 .noTouchCallout {
   -webkit-touch-callout: none;
 }
 
 /* https://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html */
-/* аналог для ИЕ10 на ВинФон8 — http://blogs.windows.com/windows_phone/b/wpdev/archive/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10.aspx */
+/* Р°РЅР°Р»РѕРі РґР»СЏ РР•10 РЅР° Р’РёРЅР¤РѕРЅ8 вЂ” http://blogs.windows.com/windows_phone/b/wpdev/archive/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10.aspx */
 .noTapHighlight {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-/* верхний регистр с разрядкой */
+/* РІРµСЂС…РЅРёР№ СЂРµРіРёСЃС‚СЂ СЃ СЂР°Р·СЂСЏРґРєРѕР№ */
 .textUppercase {
   font-size: .875em;
   letter-spacing: .1em;
@@ -630,9 +630,9 @@ sub {
   text-transform: uppercase;
 }
 
-/* полупробел */
-/* аналог в хтмл — `&#8198;` [отсюда](http://stackoverflow.com/a/8515417) */
-/* неразрывный вариант — `&#8239;` [отсюда](http://en.wikipedia.org/wiki/Non-breaking_space) */
+/* РїРѕР»СѓРїСЂРѕР±РµР» */
+/* Р°РЅР°Р»РѕРі РІ С…С‚РјР» вЂ” `&#8198;` [РѕС‚СЃСЋРґР°](http://stackoverflow.com/a/8515417) */
+/* РЅРµСЂР°Р·СЂС‹РІРЅС‹Р№ РІР°СЂРёР°РЅС‚ вЂ” `&#8239;` [РѕС‚СЃСЋРґР°](http://en.wikipedia.org/wiki/Non-breaking_space) */
 /*
 <span class="halfSpace">&nbsp;</span>
 */
@@ -641,7 +641,7 @@ sub {
   line-height: 1;
 }
 
-/* предотвращает перенос слов на новую строку в элементе */
+/* РїСЂРµРґРѕС‚РІСЂР°С‰Р°РµС‚ РїРµСЂРµРЅРѕСЃ СЃР»РѕРІ РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ РІ СЌР»РµРјРµРЅС‚Рµ */
 .textNowrap {
   white-space: nowrap;
 }
@@ -682,7 +682,7 @@ a .Icon {
   <div class="Form__field">
     <label>
       <input type="text">
-      Напишите что-нибудь
+      РќР°РїРёС€РёС‚Рµ С‡С‚Рѕ-РЅРёР±СѓРґСЊ
     </label>
   </div>
 </form>
@@ -703,7 +703,7 @@ a .Icon {
 
 /*
 <form action="#" class="FormSearch headerSearch">
-  <button class="FormSearch__submit" type="submit"><span class="textHide Icon enterBtn">Найти</span></button>
+  <button class="FormSearch__submit" type="submit"><span class="textHide Icon enterBtn">РќР°Р№С‚Рё</span></button>
   <label class="FormSearch__wrapper"><input class="FormSearch__field" type="text"><span class="Icon search"></span></label>
 </form>
 */
@@ -725,7 +725,7 @@ a .Icon {
 
 /*
 <label class="FieldFile">
-  <span class="FieldFile__button">Загрузить</span>
+  <span class="FieldFile__button">Р—Р°РіСЂСѓР·РёС‚СЊ</span>
   <span class="FieldFile__wrapper">
     <input type="file" class="FieldFile__input" />
   </span>
@@ -781,9 +781,9 @@ a.Icon {
 ---------------------------------------------------------------------*/
 
 /*
-<a class="Btn" href="#">Напомнить</a>
-<button class="Btn">Купить</button>
-<input class="Btn" type="submit" value="Применить">
+<a class="Btn" href="#">РќР°РїРѕРјРЅРёС‚СЊ</a>
+<button class="Btn">РљСѓРїРёС‚СЊ</button>
+<input class="Btn" type="submit" value="РџСЂРёРјРµРЅРёС‚СЊ">
 */
 
 .Btn {
@@ -831,9 +831,9 @@ a.Icon {
 
 /*
 <a class="pseudoTable">
-  <span class="col name">Имя</span>
-  <span class="col age">Возраст</span>
-  <span class="col weight">Вес</span>
+  <span class="col name">РРјСЏ</span>
+  <span class="col age">Р’РѕР·СЂР°СЃС‚</span>
+  <span class="col weight">Р’РµСЃ</span>
 </a>
 */
 
@@ -869,23 +869,9 @@ ul.custom.dashed > li:before {
 }
 
 
-.List.ib.separated {
-  cursor: default;
-}
-.List.ib.separated .List__item:after {
-  content: "|";
-  margin-left: .55em;
-  margin-right: .55em;
-  opacity: .75;
-}
-.List.ib.separated .List__item.last:after {
-  content: none;
-}
-
-
 /*
 <ul class="List">
-  <li class="List__item">Пункт меню, например</li>
+  <li class="List__item">РџСѓРЅРєС‚ РјРµРЅСЋ, РЅР°РїСЂРёРјРµСЂ</li>
 </ul>
 */
 
@@ -907,6 +893,19 @@ ul.custom.dashed > li:before {
 .ielte7 .List.ib .List__item {
   display: inline;
   zoom: 1;
+}
+
+.List.ib.separated {
+  cursor: default;
+}
+.List.ib.separated .List__item:after {
+  content: "|";
+  margin-left: .55em;
+  margin-right: .55em;
+  opacity: .75;
+}
+.List.ib.separated .List__item.last:after {
+  content: none;
 }
 
 .List.ib.justify {
