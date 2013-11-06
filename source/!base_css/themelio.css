@@ -493,6 +493,13 @@ sub {
   display: none !important;
 }
 
+.invisible {
+  visibility: hidden;
+}
+.invisibleNow {
+  visibility: hidden !important;
+}
+
 .hideAway {
   left: -9999px;
   position: absolute;
@@ -852,6 +859,9 @@ a.Icon {
 /* BLOCKS - LISTS
 ---------------------------------------------------------------------*/
 
+ul.custom {
+  list-style-type: none;
+}
 ul.custom > li:before {
   cursor: default;
   margin-right: .35em;
