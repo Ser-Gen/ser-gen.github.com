@@ -341,6 +341,7 @@
 .s602 .helper:before, /* Сильный снег */
 .s611 .helper:before, /* Мокрый снег */
 .s621 .helper:before { /* Снег ливневый (?) */
+  color: #acd3f3;
   content: "\f10b";
 }
 

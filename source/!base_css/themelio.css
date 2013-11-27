@@ -15,8 +15,6 @@
     BASE - LINKS
     BASE - LISTS
     BASE - TYPOGRAPHY
-  
-  USEFUL
     
   BLOCKS
     BLOCKS - EMBEDDED
@@ -450,218 +448,6 @@ sub {
 
 
 
-/* USEFUL
----------------------------------------------------------------------*/
-
-/* предотвращает схлопывание элемента, если в нём есть плавающие */
-.group:before,
-.group:after {
-  content: " ";
-  display: table;
-}
-.group:after {
-  clear: both;
-}
-.ielte7 .group {
-  zoom: 1;
-}
-
-/* альтернативный способ */
-.groupIB {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  display: inline-block;
-  width: 100%;
-}
-.ielte7 .groupIB {
-  display: inline;
-  zoom: 1;
-}
-
-/* для использования с отдельным элементом */
-.clearBoth {
-  clear: both;
-}
-
-
-/* способы скрытия элемента */
-.hide {
-  display: none;
-}
-.hideNow {
-  display: none !important;
-}
-
-.invisible {
-  visibility: hidden;
-}
-.invisibleNow {
-  visibility: hidden !important;
-}
-
-.hideAway {
-  left: -9999px;
-  position: absolute;
-  top: -9999px;
-  visibility: hidden;
-}
-.hideAwayNow {
-  left: -9999px !important;
-  position: absolute !important;
-  top: -9999px !important;
-  visibility: hidden !important;
-}
-
-.visible {
-  visibility: visible;
-}
-.visibleNow {
-  visibility: visible !important;
-}
-
-    .showBlock { display: block; }
-   .showInline { display: inline; }
-.showInlineBlock { display: inline-block; }
-
-    .showBlockNow { display: block !important; }
-   .showInlineNow { display: inline !important; }
-.showInlineBlockNow { display: inline-block !important; }
-
-.ielte7 .showInlineBlock {
-  display: inline;
-  zoom: 1;
-}
-.ielte7 .showInlineBlockNow {
-  display: inline !important;
-  zoom: 1;
-}
-
-
-/* изображение растягивается на всю ширину контейнера, не искажаясь */
-.imgFill {
-  height: auto;
-  width: 100%;
-}
-
-/* растяжка элемента на всю ширину контейнера */
-.widthFull {
-  width: 100%;
-}
-
-/* предзагрузка изображений */
-/*
-<button>
-  <span class="Icon order imgPreload imgPreloadLoading"></span>
-  Купить
-</button>
-*/
-
-.imgPreload:after {
-  content: '';
-  display: inline;
-}
-.imgPreloadLoading:after,
-.Btn.loading .Icon {
-  background: url(/img/icons/loading.gif);
-}
-
-
-/*
-<label for="input">Заголовок</label>
-<input id="input" type="text" />
-*/
-
-.fieldRequired:after {
-  color: red;
-  content: '*';
-  font-weight: bold;
-  margin-left: .3em;
-}
-.ielte7 .fieldRequired {
-  background-color: #fdd;
-  display: inline;
-  min-height: 1em;
-  min-width: 1em;
-  zoom: 1;
-}
-
-
-/* скрытие элементов, нуждающихся в джс, класс для модернизра */
-.isNeedsJS {
-  opacity: 0;
-  visibility: hidden;
-}
-.has-js .isNeedsJS {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-/* скрытие текста в элементе */
-.textHide {
-  overflow: hidden;
-}
-.textHide:before {
-  content: "";
-  display: block;
-  height: 150%;
-}
-.ielte7 .textHide {
-  text-indent: -9999px; /* проблема: строчно-блоковые элементы улетают */
-}
-
-.textHideAway {
-  text-indent: -9999px;
-}
-
-
-/* невыделяемый текст */
-.noUserSelect {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.noUserSelect::selection { color: inherit }
-
-/* отключение всплытия информации о ссылке при долгом нажатии на ней, http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#/apple_ref/css/property/-webkit-touch-callout */
-.noTouchCallout {
-  -webkit-touch-callout: none;
-}
-
-/* https://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html */
-/* аналог для ИЕ10 на ВинФон8 — http://blogs.windows.com/windows_phone/b/wpdev/archive/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10.aspx */
-.noTapHighlight {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-/* верхний регистр с разрядкой */
-.textUppercase {
-  font-size: .875em;
-  letter-spacing: .1em;
-  margin-right: -.1em;
-  text-transform: uppercase;
-}
-
-/* полупробел */
-/* аналог в хтмл — `&#8198;` [отсюда](http://stackoverflow.com/a/8515417) */
-/* неразрывный вариант — `&#8239;` [отсюда](http://en.wikipedia.org/wiki/Non-breaking_space) */
-/*
-<span class="halfSpace">&nbsp;</span>
-*/
-.textHalfSpace {
-  font-size: 50%;
-  line-height: 1;
-}
-
-/* предотвращает перенос слов на новую строку в элементе */
-.textNowrap {
-  white-space: nowrap;
-}
-
-
-
 /* BLOCKS
 ---------------------------------------------------------------------*/
 
@@ -949,4 +735,216 @@ ul.custom.dashed > li:before {
 }
 .subheader {
   font-weight: normal;
+}
+
+
+
+/* USEFUL
+---------------------------------------------------------------------*/
+
+/* предотвращает схлопывание элемента, если в нём есть плавающие */
+.group:before,
+.group:after {
+  content: " ";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.ielte7 .group {
+  zoom: 1;
+}
+
+/* альтернативный способ */
+.groupIB {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+}
+.ielte7 .groupIB {
+  display: inline;
+  zoom: 1;
+}
+
+/* для использования с отдельным элементом */
+.clearBoth {
+  clear: both;
+}
+
+
+/* способы скрытия элемента */
+.hide {
+  display: none;
+}
+.hideNow {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+.invisibleNow {
+  visibility: hidden !important;
+}
+
+.hideAway {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+  visibility: hidden;
+}
+.hideAwayNow {
+  left: -9999px !important;
+  position: absolute !important;
+  top: -9999px !important;
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible;
+}
+.visibleNow {
+  visibility: visible !important;
+}
+
+    .showBlock { display: block; }
+   .showInline { display: inline; }
+.showInlineBlock { display: inline-block; }
+
+    .showBlockNow { display: block !important; }
+   .showInlineNow { display: inline !important; }
+.showInlineBlockNow { display: inline-block !important; }
+
+.ielte7 .showInlineBlock {
+  display: inline;
+  zoom: 1;
+}
+.ielte7 .showInlineBlockNow {
+  display: inline !important;
+  zoom: 1;
+}
+
+
+/* изображение растягивается на всю ширину контейнера, не искажаясь */
+.imgFill {
+  height: auto;
+  width: 100%;
+}
+
+/* растяжка элемента на всю ширину контейнера */
+.widthFull {
+  width: 100%;
+}
+
+/* предзагрузка изображений */
+/*
+<button>
+  <span class="Icon order imgPreload imgPreloadLoading"></span>
+  Купить
+</button>
+*/
+
+.imgPreload:after {
+  content: '';
+  display: inline;
+}
+.imgPreloadLoading:after,
+.Btn.loading .Icon {
+  background: url(/img/icons/loading.gif);
+}
+
+
+/*
+<label for="input">Заголовок</label>
+<input id="input" type="text" />
+*/
+
+.fieldRequired:after {
+  color: red;
+  content: '*';
+  font-weight: bold;
+  margin-left: .3em;
+}
+.ielte7 .fieldRequired {
+  background-color: #fdd;
+  display: inline;
+  min-height: 1em;
+  min-width: 1em;
+  zoom: 1;
+}
+
+
+/* скрытие элементов, нуждающихся в джс, класс для модернизра */
+.isNeedsJS {
+  opacity: 0;
+  visibility: hidden;
+}
+.has-js .isNeedsJS {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* скрытие текста в элементе */
+.textHide {
+  overflow: hidden;
+}
+.textHide:before {
+  content: "";
+  display: block;
+  height: 150%;
+}
+.ielte7 .textHide {
+  text-indent: -9999px; /* проблема: строчно-блоковые элементы улетают */
+}
+
+.textHideAway {
+  text-indent: -9999px;
+}
+
+
+/* невыделяемый текст */
+.noUserSelect {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.noUserSelect::selection { color: inherit }
+
+/* отключение всплытия информации о ссылке при долгом нажатии на ней, http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#/apple_ref/css/property/-webkit-touch-callout */
+.noTouchCallout {
+  -webkit-touch-callout: none;
+}
+
+/* https://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html */
+/* аналог для ИЕ10 на ВинФон8 — http://blogs.windows.com/windows_phone/b/wpdev/archive/2012/11/15/adapting-your-webkit-optimized-site-for-internet-explorer-10.aspx */
+.noTapHighlight {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* верхний регистр с разрядкой */
+.textUppercase {
+  font-size: .875em;
+  letter-spacing: .1em;
+  margin-right: -.1em;
+  text-transform: uppercase;
+}
+
+/* полупробел */
+/* аналог в хтмл — `&#8198;` [отсюда](http://stackoverflow.com/a/8515417) */
+/* неразрывный вариант — `&#8239;` [отсюда](http://en.wikipedia.org/wiki/Non-breaking_space) */
+/*
+<span class="halfSpace">&nbsp;</span>
+*/
+.textHalfSpace {
+  font-size: 50%;
+  line-height: 1;
+}
+
+/* предотвращает перенос слов на новую строку в элементе */
+.textNowrap {
+  white-space: nowrap;
 }
