@@ -24,6 +24,8 @@
     BLOCKS - TABLES
     BLOCKS - LISTS
     BLOCKS - TYPOGRAPHY
+  
+  USEFUL
  
  */
 
@@ -936,6 +938,7 @@ ul.custom.dashed > li:before {
 /* полупробел */
 /* аналог в хтмл — `&#8198;` [отсюда](http://stackoverflow.com/a/8515417) */
 /* неразрывный вариант — `&#8239;` [отсюда](http://en.wikipedia.org/wiki/Non-breaking_space) */
+/* символьные аналоги могут не отображаться в некоторых системах, поэтому: */
 /*
 <span class="halfSpace">&nbsp;</span>
 */
