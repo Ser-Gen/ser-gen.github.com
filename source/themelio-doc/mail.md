@@ -47,6 +47,8 @@
 
 [Аутлуки, похоже, не поддерживают дисплей](http://msdn.microsoft.com/en-us/library/aa338201.aspx#Word2007MailHTMLandCSS_Core)
 
+Порядок указания свойств в Аутлуке: слева, сверху, справа, снизу.
+
 ```html
 ...
 <td background="http://www.example.ru/mail/bg.jpg" width="790" style="text-align: left;" valign="top">
