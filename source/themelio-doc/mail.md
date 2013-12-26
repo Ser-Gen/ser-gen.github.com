@@ -47,13 +47,15 @@
 
 [Аутлуки, похоже, не поддерживают дисплей](http://msdn.microsoft.com/en-us/library/aa338201.aspx#Word2007MailHTMLandCSS_Core)
 
+Атрибут `fillcolor` позволяет залить всю область `rect` цветом.
+
 Порядок указания свойств в Аутлуке: слева, сверху, справа, снизу.
 
 ```html
 ...
 <td background="http://www.example.ru/mail/bg.jpg" width="790" style="text-align: left;" valign="top">
 	<!--[if gte mso 9]>
-		<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:790px;height:572px;">
+		<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" fillcolor="#bada55" stroke="false" style="width:790px;height:572px;">
 			<v:fill type="tile" src="http://www.example.ru/mail/bg.jpg" />
 			<v:textbox style="mso-fit-shape-to-text:true" inset="245px,0,25px,60px">
 	<![endif]-->
