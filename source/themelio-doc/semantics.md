@@ -36,4 +36,34 @@ https://support.google.com/webmasters/answer/2774358?hl=en&ref_topic=2774098
 http://schema.org/Product
 
 
+## Микроформаты
+
+[Документация Яндекса](http://help.yandex.ru/webmaster/?id=1111670)
+[Координаты фирмы](http://microformats.org/wiki/hcard)
+[Генератор](http://microformats.org/code/hcard/creator)
+[Поддерживаемые параметры](http://help.yandex.ru/webmaster/?id=1111574)
+[Информация о товаре](http://help.yandex.ru/webmaster/?id=1113264)
+[Поддерживаемые параметры](http://help.yandex.ru/webmaster/?id=1113265)
+[Валидация микроразметки](http://webmaster.yandex.ru/microtest.xml)
+
+Пример:
+
+  <div id="" class="vcard">
+    <div class="org">Самсон-опт</div>
+    <a class="email" href="mailto:vrn@samsonopt.ru">vrn@samsonopt.ru</a>
+    <div class="adr">
+      <div class="street-address">ул. 45-й Стрелковой Дивизии, 261а </div>
+      <span class="locality">Воронеж</span>, 
+      <span class="postal-code">394026</span>
+      <span class="country-name">Россия</span>
+    </div>
+    <div class="tel">
+      (473) 242-58-11,
+            242-58-12,
+            242-58-13,
+            242-58-14
+    </div>
+   </div>
+
+
 Вайарию
