@@ -64,3 +64,8 @@
 // [Скорость работы цсс джКуери и стайл ДЖС](http://jsperf.com/style-versus-jquery-css/8)
 
 // [Функции анимации](https://github.com/danro/jquery-easing/blob/master/jquery.easing.js)
+
+
+// [Определение поддержки свойства браузером](http://gist.github.com/barneycarroll/1096784)
+[Улучшенная версия](https://gist.github.com/Ser-Gen/5501521)
+[На стаковерфлов](http://stackoverflow.com/questions/6974648/css3-transition-polyfill)
