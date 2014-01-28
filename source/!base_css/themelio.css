@@ -96,8 +96,10 @@ summary {
 
 audio,
 canvas,
+progress,
 video {
   display: inline-block; /* исправляется отображение в ИЕ89 */
+  vertical-align: baseline; /* вертикальное выравнивание `progress` в Хроме, ФФ, Опере */
 }
 .ielte7 audio,
 .ielte7 canvas,
@@ -160,8 +162,7 @@ label,
 input[type="checkbox"],
 input[type="radio"],
 button,
-select,
-.curPointer {
+select {
   cursor: pointer;
 }
 html input[disabled],
@@ -172,6 +173,7 @@ select[disabled] {
 
 button,
 input,
+optgroup,
 select,
 textarea {
   -webkit-box-sizing: border-box;
@@ -200,6 +202,10 @@ select {
   text-transform: none;
 }
 
+button {
+  overflow: visible; /* изначально значение `hidden` в ИЕ */
+}
+
 button,
 html input[type="button"],
 input[type="reset"],
@@ -214,9 +220,16 @@ input[type="submit"] {
   overflow: visible; /* внутренний отступ */
 }
 
-/* исправление неверно определяемых размеров в ИЕ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
 input[type="checkbox"],
 input[type="radio"] {
+  box-sizing: border-box; /* правильные размеры для ИЕ */
+  
+  /* правильное выравнивание по вертикали */
   margin-top: -.17em;
   padding: 0;
   vertical-align: middle;
@@ -241,6 +254,11 @@ input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; /* теперь должен отображаться верный курсор */
+}
+
 /* внутренний отступ в ФФ */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -263,6 +281,15 @@ textarea {
   vertical-align: top;
 }
 
+legend {
+  border: 0; /* правильный цвет не наследовался в ИЕ */
+  padding: 0;
+}
+
+optgroup {
+  font-weight: bold; /* не наследовать жирность */
+}
+
 
 
 /* BASE - TABLES
@@ -274,10 +301,18 @@ table {
   border-spacing: 0;
 }
 
+td, th {
+  padding: 0;
+}
+
 
 
 /* BASE - LINKS
 ---------------------------------------------------------------------*/
+
+a:active {
+  background: transparent; /* отключение подсветки ссылок в ИЕ>=10 */
+}
 
 a:focus {
   outline: thin dotted; /* одинаковое выделение выбранных ссылок */
@@ -416,6 +451,7 @@ code, kbd, pre, samp {
 }
 
 pre {
+  overflow: auto; /* правильное поведение при переполнении */
   white-space: pre-wrap; /* улучшает читаемость во всех браузерах */
 }
 
