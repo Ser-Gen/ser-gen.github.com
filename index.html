@@ -1,0 +1,13 @@
+---
+layout: default
+title: Стартуем!
+---
+
+<div class="Page__content">
+	<h1>Blog Posts</h1>
+	<ul class="List">
+		{% for post in site.posts %}
+			<li class="List__item"><span class="Article__date">{{ post.date | date_to_string }}</span> &raquo; <a class="Article__link" href="{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
