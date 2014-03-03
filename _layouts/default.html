@@ -3,6 +3,7 @@
 
 <head>
   {% include head.html %}
+  <link rel="stylesheet" href="//ser-gen.github.io/source/js/hl/github.css">
 </head>
 
 <body class="Page">
@@ -11,6 +12,15 @@
 </div>
 
 <script src="//yandex.st/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ser-gen.github.io/source/js/hl/highlight.js"></script>
+<script>
+
+$('pre code').each(function () {
+  $(this).html($(this).html().replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+});
+
+hljs.initHighlightingOnLoad();
+</script>
 </body>
 
 </html>
