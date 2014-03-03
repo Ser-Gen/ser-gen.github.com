@@ -1,14 +1,80 @@
 <meta charset="utf-8">
 <title>{{ page.title }}</title>
 
-<link rel="stylesheet" href="http://ser-gen.github.io/source/!base_css/themelio.css" media="all">
+<link rel="stylesheet" href="//ser-gen.github.io/source/!base_css/themelio.css" media="all">
+<link rel="stylesheet" href="//ser-gen.github.io/source/js/hl/github.css">
 <style>
-.Page {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 2em;
-  margin-right: auto;
-  margin-left: auto;
-  width: 50vw;
-  max-width: 80em;
+body {
+  font-family: 'segoe ui';
+  font-size: 2.2vh;
+}
+
+a:hover,
+.pseudoLink:hover {
+  border-bottom-color: #f68d91;
+  color: #ed1c24;
+}
+
+.Page__header {
+  margin-bottom: 2em;
+}
+.Page__content {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: auto;
+  max-width: 60em;
+  padding: 0 10%;
+}
+
+.Notes {
+}
+
+.Note {
+  margin: 0 auto 2.25em;
+}
+.Note__header {}
+.Note__date {
+  color: #777;
+  font-size: .75em;
+}
+.Note__content {}
+
+
+.keyboard-shortcut {
+  cursor: default;
+  background-color: #f0f0c0;
+  border-radius: 4px;
+  color: #aa6644;
+  font-size: 85%;
+  padding: 0 0.33em;
+  text-decoration: none;
+}
+
+
+
+.Note__content ul:lang(ru) {
+  list-style-type: none;
+}
+.Note__content ul:lang(ru) > li:before {
+  cursor: default;
+  margin-right: .35em;
+  position: absolute;
+  right: 100%;
+  top: 0;
+}
+.Note__content ul:lang(ru) > li:before {
+  content: '\2014';
+  margin-right: .5em;
+}
+
+
+li code,
+p code {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: .3em;
+  margin: 0 .1em;
+  padding: 0 .4em;
 }
 </style>
