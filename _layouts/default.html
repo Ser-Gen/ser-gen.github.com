@@ -16,6 +16,8 @@
 <script src="//ser-gen.github.io/source/js/hl/highlight.js"></script>
 <script>
 
+Troller.create();
+
 $('pre code').each(function () {
   $(this).html($(this).html().replace(/^\s*/g,'').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 });
