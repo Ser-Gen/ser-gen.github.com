@@ -12,11 +12,12 @@
 </div>
 
 <script src="//yandex.st/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ser-gen.github.io/source/js/jquery.troller.min.js"></script>
 <script src="//ser-gen.github.io/source/js/hl/highlight.js"></script>
 <script>
 
 $('pre code').each(function () {
-  $(this).html($(this).html().replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+  $(this).html($(this).html().replace(/^\s*/g,'').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 });
 
 hljs.initHighlightingOnLoad();
