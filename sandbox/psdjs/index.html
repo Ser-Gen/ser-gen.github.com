@@ -1,0 +1,360 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>test--psdjs</title>
+<style>
+.Viewer__image {
+	display: inline-block;
+	position: relative;
+}
+
+.get.active {
+	background-color: #acf;
+}
+</style>
+</head>
+
+<body>
+<a href="layerEffectsTest.psd" class="Download--psd"></a>
+<span class="get js-getText">Текст</span>
+<span class="get js-getImg">Кротинки</span>
+
+<div class="Viewer__image"></div>
+
+<script src="psd.js"></script>
+<script>
+
+// добыча данных из макетов
+(function(){
+	var psdLink = document.querySelector('.Download--psd');
+
+	if (!psdLink) { return false };
+	var PSD = require('psd');
+	var PSDData = false;
+	var PSDTree = false;
+
+	PSD.fromURL(psdLink.getAttribute('href')).then(function (psd) {
+		PSDData = psd;
+		PSDTree = psd.tree();
+
+  		document.querySelector('.Viewer__image').appendChild(psd.image.toPng());
+	});
+
+	document.addEventListener('click', function (e) {
+
+		if (e.target.classList.contains('js-getText')) {
+
+			if (e.target.classList.contains('active')) {
+				clearPsdData();
+			}
+			else {
+				clearPsdData();
+				dataHandler(getTextFromPsd);
+				e.target.classList.add('active');
+			};
+
+		};
+
+		if (e.target.classList.contains('js-getImg')) {
+
+			if (e.target.classList.contains('active')) {
+				clearPsdData();
+			}
+			else {
+				clearPsdData();
+				dataHandler(getImgFromPsd);
+				e.target.classList.add('active');
+			};
+
+		};
+		
+	});
+
+	var imageWrapper = document.querySelector('.Viewer__image');
+	var objStyle = '<style>.PsdLayerObj {box-shadow: inset 0 0 0 1px blue; color: transparent; cursor: pointer; position: absolute; top: 0; left: 0;} .PsdLayerObj--img {overflow: hidden;} .PsdLayerObj--img-too-big {box-shadow: inset 0 0 0 1px red;}</style>';
+
+	document.querySelector('head').insertAdjacentHTML('beforeEnd', objStyle);
+
+
+	// получение и начало обработки данных
+	function dataHandler(cb) {
+
+		if (!PSDData) {
+			PSD.fromURL(psdLink.getAttribute('href')).then(function (psd) {
+				PSDData = psd;
+				PSDTree = psd.tree();
+				cb(PSDTree, PSDData);
+			});
+		}
+		else {
+			cb(PSDTree, PSDData);
+		};
+
+	};
+	// ~ получение и начало обработки данных
+
+	// получение текста из макета
+	function getTextFromPsd(data) {
+		var data = data.descendants();
+
+		markText(data);
+
+		// описание объектов с текстом
+		function markText(data) {
+			var objectsWithText = [];
+			var dataObj = getTextObjects(data);
+
+			var objects = document.createElement('div');
+
+			objects.classList.add('PsdLayerObjs');
+
+			if (dataObj.length) {
+				for (var i = dataObj.length - 1; i >= 0; i--) {
+					var elem = createObj(dataObj[i]);
+
+					if (elem) {
+						objects.appendChild(elem);
+					};
+				};
+				imageWrapper.appendChild(objects);
+			}
+			else {
+				alert('Слои с текстом не найдены');
+			};
+
+
+			// получение объектов с текстом
+			function getTextObjects(data) {
+				data.forEach(function(node, index){
+					var dataExported = node.export();
+					var parents = node.ancestors();
+					var isParentInvisible = false;
+
+					parents.forEach(function(parent, i){
+						if (!parent.export().visible) {
+							isParentInvisible = true;
+						};
+					});
+
+					if (isParentInvisible) return true;
+					if (node.isGroup()) return true;
+					if (!dataExported.text) return true;
+					if (!dataExported.visible) return true;
+					objectsWithText.push(node);
+				});
+
+				return objectsWithText;
+			};
+			// ~ получение объектов с текстом
+
+			// визуальное представление объекта
+			function createObj(data) {
+				var d = document.createElement('div');
+				var dataExported = data.export();
+				var sizes = unique(data.get('typeTool').sizes());
+
+				// иногда не удаётся получить размеры текста
+				sizes ? sizes = ', '+ sizes.join('px, ') +'px' : sizes = '';
+
+				d.style.top = dataExported.top +'px';
+				d.style.left = dataExported.left +'px';
+				d.style.height = dataExported.height +'px';
+				d.style.width = dataExported.width +'px';
+
+				if (!!dataExported.text && dataExported.hasOwnProperty('text')) {
+					d.innerHTML = dataExported.text.value;
+				};
+
+				d.classList.add('PsdLayerObj', 'PsdLayerObj--text');
+				d.setAttribute('title', dataExported.text.font.name + sizes);
+
+				// 2156, && -> ||
+				// if ((this.engineData == null) || (this.styles().FontSize == null)) {
+
+				console.log(dataExported.text.font);
+				// console.log(d);
+
+				d.addEventListener('click', function () {
+					selectText(this);
+				});
+
+				return d;
+			};
+			// ~ визуальное представление объекта
+		};
+		// ~ описание объектов с текстом
+	};
+	// ~ получение текста из макета
+
+
+	// получение текста из макета
+	function getImgFromPsd(data, psd) {
+		var data = data.descendants();
+
+		markImg(data);
+
+		// описание объектов с изображениями
+		function markImg(data) {
+			var objectsWithImg = [];
+			var dataObj = getImgObjects(data);
+
+			var objects = document.createElement('div');
+
+			objects.classList.add('PsdLayerObjs');
+
+			if (data.length === 0) {
+				dataObj.push(psd.image.toPng());
+			};
+
+			if (dataObj.length) {
+				for (var i = dataObj.length - 1; i >= 0; i--) {
+					var elem = createObj(dataObj[i]);
+
+					if (elem) {
+						objects.appendChild(elem);
+					};
+				};
+				imageWrapper.appendChild(objects);
+			} else {
+				alert('Слои с изображениями не найдены');
+			};
+
+
+			// добыча изображений слоёв
+			// https://github.com/meltingice/psd.js/issues/16
+			// https://github.com/meltingice/psd.js/blob/master/examples/node/export_layers.js
+			// получение объектов с изображениями
+			function getImgObjects(data) {
+				data.forEach(function(node, index){
+					var dataExported = node.export();
+					var parents = node.ancestors();
+					var isParentInvisible = false;
+
+					parents.forEach(function(parent, i){
+						if (!parent.export().visible) {
+							isParentInvisible = true;
+						};
+					});
+
+					if (isParentInvisible) return true;
+					if (node.isGroup()) return true;
+					if (!!dataExported.text) return true;
+					if (!dataExported.visible) return true;
+					objectsWithImg.push(node);
+				});
+
+				return objectsWithImg;
+			};
+			// ~ получение объектов с изображениями
+
+			// визуальное представление объекта
+			function createObj(data) {
+				var d = document.createElement('div');
+				var src = data.src || data.toPng().src;
+				var tooBig = '';
+
+				console.log(data.name);
+				console.log(data.toPng());
+				console.log(data.get('objectEffects'));
+
+				// 8, нужна проверка
+				// на ненулёвость размеров изображения
+				// перед отрисовкой на холсте
+
+				if (!src) { return false; };
+
+				d.style.top = data.top +'px';
+				d.style.left = data.left +'px';
+				d.style.height = data.height +'px';
+				d.style.width = data.width +'px';
+				d.innerHTML = src;
+				d.classList.add('PsdLayerObj', 'PsdLayerObj--img');
+
+				if (src.length > 40000) {
+					tooBig = ', размер: '+ src.length;
+					d.classList.add('PsdLayerObj--img-too-big');
+				};
+
+				d.setAttribute('title', data.width +'×'+ data.height + tooBig);
+
+				d.addEventListener('click', function () {
+					selectText(this);
+				});
+
+				d.addEventListener('mousedown', function (e) {
+					if (e.button === 1) {
+						var name = prompt('Введите название файла', 'kek');
+
+						if (name) {
+							downloadFile(src, name +'.png');
+						};
+					};
+				});
+
+				return d;
+			};
+			// ~ визуальное представление объекта
+		};
+		// ~ описание объектов с изображениями
+	};
+	// ~ получение текста из макета
+
+	// выбор текста в элементе
+	function selectText (elem) {
+		var range;
+
+		if (document.body.createTextRange) {
+			range = document.body.createTextRange();
+			range.moveToElementText(elem);
+			range.select();
+		}
+		else if (window.getSelection) {
+			range = document.createRange();
+			range.selectNodeContents(elem);
+			window.getSelection().removeAllRanges();
+			window.getSelection().addRange( range );
+		};
+	};
+	// ~ выбор текста в элементе
+
+	// удаление найденных данных
+	function clearPsdData(isFullClear) {
+		if (isFullClear) {
+			PSDData = false;
+			PSDTree = false;
+		};
+
+		var objectsOld = document.querySelector('.PsdLayerObjs');
+		var triggers = document.querySelectorAll('.js-getText, .js-getImg');
+
+		if (triggers) {
+			[].forEach.call(triggers, function (elem) {
+				elem.classList.remove('active');
+			});
+		};
+
+		if (!!objectsOld) {
+			objectsOld.parentNode.removeChild(objectsOld);
+		};
+	};
+	// ~ удаление найденных данных
+
+	// оставляет только уникальные элементы массива
+	function unique(arr) {
+		var sorted = arr;
+
+		if (sorted === undefined) { return false; };
+
+		sorted.sort();
+		return sorted.filter(function(value, index, arr){
+			if(index < 1) 
+				return true;
+			else
+				return value != arr[index-1];
+		});
+	};
+	// ~ оставляет только уникальные элементы массива
+})();
+
+</script>
+</body>
