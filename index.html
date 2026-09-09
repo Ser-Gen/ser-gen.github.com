@@ -16,6 +16,9 @@
 			a {
 				color: #acf;
 			}
+			a:hover {
+				color: #f77;
+			}
 			.Box {
 				display: inline-block;
 				width: 100%;
@@ -33,9 +36,6 @@
 			}
 			.Box__item a {
 				position: relative;
-			}
-			.Box__item a:hover {
-				color: #ff7070;
 			}
 			.Box__item a[style*="--favicon"]::before {
 				content: "";
@@ -65,8 +65,8 @@
 	<div class="Box">
 		<h2 class="Box__header">Tools</h2>
 		<ul class="Box__list">
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/pixos/" target="_blank">PixOS</a>
+			<li class="Box__item Box__item--icon">
+				<a href="https://ser-gen.ru/pixos/" target="_blank" style="--favicon: url('https://ser-gen.ru/pixos/favicon.png');">PixOS</a>
 				<ul class="Box__list">
 					<li class="Box__item">
 						<a href="https://ser-gen.ru/pixos/apps/ace/" target="_blank">Ace editor</a> — light text editor, mobile support
@@ -81,7 +81,7 @@
 						<a href="https://ser-gen.ru/pixos/apps/mkv-player" target="_blank">Mkv player</a>
 					</li>
 					<li class="Box__item Box__item--icon">
-						<a href="https://ser-gen.ru/pixos/apps/media-player/" target="_blank" style="--favicon: url('https://ser-gen.ru/pixos/apps/treemap/favicon.svg');">media player</a> — media player with editing, playlist and visualization support, <a href="https://ser-gen.ru/pixos/apps/media-player//?initPlaylist=%5B%7B%22url%22%3A%22https%3A%2F%2Fice6.somafm.com%2Fgroovesalad-64-aac%22%2C%22name%22%3A%22groovesalad-64-aac%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fradio.datamosh.ru%2Flisten%2Fdatamosh_radio%2Fradio.mp3%22%2C%22name%22%3A%22datamosh%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice.bassdrive.net%2Fstream32%22%2C%22name%22%3A%22bassdrive-stream32%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Ftunecat.runxiyu.org%2Fstream.opus%22%2C%22name%22%3A%22stream.opus%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice2.somafm.com%2Fvaporwaves-64-aac%22%2C%22name%22%3A%22vaporwaves-64-aac%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice6.somafm.com%2Fdefcon-64-aac%22%2C%22name%22%3A%22defcon-64-aac%22%2C%22mimeType%22%3Anull%7D%5D" target="_blank">radio</a>
+						<a href="https://ser-gen.ru/pixos/apps/media-player/" target="_blank" style="--favicon: url('https://ser-gen.ru/pixos/apps/media-player/favicon.svg');">media player</a> — media player with editing, playlist and visualization support, <a href="https://ser-gen.ru/pixos/apps/media-player//?initPlaylist=%5B%7B%22url%22%3A%22https%3A%2F%2Fice6.somafm.com%2Fgroovesalad-64-aac%22%2C%22name%22%3A%22groovesalad-64-aac%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fradio.datamosh.ru%2Flisten%2Fdatamosh_radio%2Fradio.mp3%22%2C%22name%22%3A%22datamosh%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice.bassdrive.net%2Fstream32%22%2C%22name%22%3A%22bassdrive-stream32%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Ftunecat.runxiyu.org%2Fstream.opus%22%2C%22name%22%3A%22stream.opus%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice2.somafm.com%2Fvaporwaves-64-aac%22%2C%22name%22%3A%22vaporwaves-64-aac%22%2C%22mimeType%22%3Anull%7D%2C%7B%22url%22%3A%22https%3A%2F%2Fice6.somafm.com%2Fdefcon-64-aac%22%2C%22name%22%3A%22defcon-64-aac%22%2C%22mimeType%22%3Anull%7D%5D" target="_blank">radio</a>
 					</li>
 					<li class="Box__item">
 						<a href="https://ser-gen.ru/pixos/apps/pico8" target="_blank">Pico8-edu</a>
@@ -96,27 +96,6 @@
 						<a href="https://ser-gen.ru/pixos/apps/ya-book-reader/" target="_blank">ya-book-reader</a> — book reader
 					</li>
 				</ul>
-			</li>
-			<li class="Box__item">
-				<a href="https://github.com/Ser-Gen/bookmarks" target="_blank">Bookmarks</a>
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/tools/7zip/" target="_blank">7zip</a> by <a href="https://github.com/GMH-Code/JS7z" target="_blank">GMH-Code</a>
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/tools/compress.addy/" target="_blank">compress.addy</a> — video compressor by <a href="https://github.com/addyosmani/video-compress" target="_blank">addyosmani</a>
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/tools/squish.addy.ie/" target="_blank">squish.addy.ie</a> — image compressor by <a href="https://github.com/addyosmani/video-compress" target="_blank">addyosmani</a>
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/livecodes/" target="_blank">Livecodes</a> — code playground
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.ru/text-tools/" target="_blank">text-tools</a>
-			</li>
-			<li class="Box__item">
-				<a href="https://ser-gen.github.io/peerjs-test/" target="_blank">peerjs-test</a>
 			</li>
 			<li class="Box__item Box__item--icon">
 				<a href="https://ser-gen.ru/project-reader/dist/" target="_blank" style="--favicon: url('https://ser-gen.ru/project-reader/dist/favicon.svg');">project-reader</a> — Browser tool that reads and analyzes agent session transcripts</a>
@@ -138,6 +117,33 @@
 			</li>
 			<li class="Box__item Box__item--icon">
 				<a href="https://ser-gen.ru/internet-archive-viewer/dist/install.html" target="_blank" style="--favicon: url('https://ser-gen.ru/internet-archive-viewer/dist/favicon.svg');">internet-archive-viewer</a> — bookmarklet that turns Internet Archive file listings into a browsable tree with inline previews and folder downloads</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="Box">
+		<h2 class="Box__header">Stale tools</h2>
+		<ul class="Box__list">
+			<li class="Box__item">
+				<a href="https://github.com/Ser-Gen/bookmarks" target="_blank">Bookmarks</a>
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.ru/tools/7zip/" target="_blank">7zip</a> by <a href="https://github.com/GMH-Code/JS7z" target="_blank">GMH-Code</a>
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.ru/tools/compress.addy/" target="_blank">compress.addy</a> — video compressor by <a href="https://github.com/addyosmani/video-compress" target="_blank">addyosmani</a>
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.ru/tools/squish.addy.ie/" target="_blank">squish.addy.ie</a> — image compressor by <a href="https://github.com/addyosmani/video-compress" target="_blank">addyosmani</a>
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.ru/livecodes/" target="_blank">Livecodes</a> — code playground
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.ru/text-tools/" target="_blank">text-tools</a>
+			</li>
+			<li class="Box__item">
+				<a href="https://ser-gen.github.io/peerjs-test/" target="_blank">peerjs-test</a>
 			</li>
 		</ul>
 	</div>
